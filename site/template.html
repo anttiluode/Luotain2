@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Luotain2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: a single reading column with wide figures; tables scroll inside their own box. */
+:root{--bg:#f6f6f3;--panel:#fcfcfb;--ink:#14171c;--muted:#56595f;--line:#dcdcd6;--accent:#1d5fb3;--win:#1f7a5a;
+  --display:"Space Grotesk","IBM Plex Sans",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--panel:#1a1d21;--ink:#e8e9ea;--muted:#a3a7ad;--line:#2e3238;--accent:#7fb0ea;--win:#5fd3a6;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding:32px max(16px,env(safe-area-inset-right,0px)) 64px max(16px,env(safe-area-inset-left,0px))}
+main{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1{font:600 clamp(2.2rem,6vw,3.4rem)/1.05 var(--display);letter-spacing:-.03em;margin:0}
+h2{font:600 1.45rem/1.2 var(--display);margin:0 0 8px;text-wrap:balance}
+h3{font:600 1rem var(--display);margin:18px 0 6px}
+p{margin:0 0 10px;max-width:68ch}
+.lede{font-size:1.12rem;color:var(--muted)}
+.lede b{color:var(--ink)}
+ol{margin:0;padding-left:1.3em;max-width:68ch}
+li{margin-bottom:6px}
+code,.mono{font-family:var(--mono);font-size:.9em}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13px/1.5 var(--mono)}
+figure{margin:0;background:#fcfcfb;border:1px solid var(--line);border-radius:10px;padding:10px}
+figure img{width:100%;height:auto;display:block}
+figcaption{color:#56595f;font-size:.9rem;padding:8px 4px 0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font:600 .8rem var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+td.win{color:var(--win);font-weight:600}
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:700px){.ledger{grid-template-columns:1fr}}
+.ledger div{border-top:3px solid var(--line);padding-top:8px;min-width:0}
+.ledger .ok{border-color:var(--win)}
+.ledger ul{margin:0;padding-left:1.1em}
+.ledger li{margin-bottom:6px}
+a{color:var(--accent)}
+.kicker{font:500 .8rem var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="kicker">Luotain2 · sounding for the laws of fields</div>
+  <h1>Luotain2</h1>
+  <p class="lede">Give it a moving field or a still image. It returns the <b>smallest readable rule</b> that makes the data predictable, for example <span class="mono">u[t] = ½·u + ⅒·(four neighbours) + ⅒·u(+17,−9)</span>, and it proves the rule on data the rule never saw. No labels, no neural network. What the current rule fails to predict, the residue, points at the next term.</p>
+</header>
+
+<section>
+  <h2>The loop</h2>
+  <ol>
+    <li>Fit the current law. What it cannot predict is the <b>residue</b>.</li>
+    <li>Ask the residue which term it wants. One FFT cross-correlation scores <i>every</i> shift of a field at once (u, u², u³, at each delay), after removing what the terms already in the law can explain. The peaks are the proposals.</li>
+    <li><b>Probe.</b> Each proposal is refitted on a small sample; proposals that do not help on a separate sample are killed without a full fit (Luotain's habit: cheap probes kill most candidates).</li>
+    <li>Add <b>symmetry moves</b>: a proposal together with its mirror image, and the mirror images of terms already in the law.</li>
+    <li>A survivor joins the law only if it lowers the error on a <b>validation</b> split the coefficients never saw. When nothing passes, try <b>exchanging</b> a term in the law for a proposal.</li>
+    <li>Prune terms that stopped paying, then snap coefficients to simple fractions when that costs nothing on validation. The final law is checked on a third, untouched <b>test</b> split.</li>
+  </ol>
+  <p>The law is saved as plain JSON, and <span class="mono">luotain2/certify.py</span> re-scores it with an independent 40-line numpy implementation, so a claim can be checked without trusting the search.</p>
+</section>
+
+<figure>
+  <img src="site/fig/steps_wormhole.png" alt="Residue maps and their correlation maps for each step of discovering the wormhole law">
+  <figcaption>Hidden law: local averaging plus a link to the pixel 17 rows down and 9 columns left. Left: what the law so far cannot predict. Right: how strongly that residue wants each shift (dx, dy). After the first term, the residue points straight at (+17, −9). The circle marks the accepted proposal.</figcaption>
+</figure>
+
+<section>
+  <h2>Mystery worlds</h2>
+  <p>Eight fields made by known laws: heat, diagonal diffusion, drift, the wave equation (needs memory of two frames), Allen–Cahn (a cubic term), a long-range "wormhole" link, Burgers (a product term), and a null world with no law at all, plus a delayed echo as a stress test. Each runs on five fresh seeds that were not used while developing the method, with three independent trajectories: train, validation, test.</p>
+  <figure><img src="site/fig/benchmark.png" alt="Bar chart: exact and equivalent recoveries per method and noise condition"></figure>
+  {{WORLDS}}
+  <p>Exact means the law has exactly the true terms. Equivalent means different terms, but held-out error within 1% of the true law refitted on the same data. The number after × is the median held-out error divided by that oracle error.</p>
+</section>
+
+<section>
+  <h2>Ledger</h2>
+  <div class="ledger">
+    <div class="ok"><h3>Verified</h3><ul id="ok"><li><b>Noise inside the dynamics (2% and 10%):</b> the exact law in 44 of 45 fresh runs at each level. The 45th is an equivalent law: Burgers came out as u(x+1)² − u(x−1)², the conservative form of the same equation, instead of u·(u(x+1) − u(x−1)).</li>
+<li><b>Terms no stencil lists:</b> the wormhole link (+17, −9) and the delayed echo (three frames back at (−11, +23)) were exact in 20 of 20 runs. The fixed radius-2 library found 0 of 20.</li>
+<li><b>Guidance is what works:</b> the same loop with random proposals recovered no law in 40 of 40 non-null runs per condition.</li>
+<li><b>No false laws:</b> the null world (no law) returned nothing in all 15 runs.</li>
+<li><b>Known still-image law:</b> the synthetic causal texture came out exact, including the link at (−6, −11), with coefficients snapped to 9/20, 7/20, 3/20.</li>
+<li><b>Real text and page images:</b> the law reads repeated character and line structure from far away, for example (0, −22) and (0, −28) on the page, and beats every fixed linear stencil. On the text image it also beats the JPEG-LS median predictor (4.066 vs 4.208 bits per pixel).</li>
+<li><b>Certificates:</b> the independent re-scorer agrees with the engine to 1e-9 (unit test).</li></ul></div>
+    <div><h3>Failed or open</h3><ul id="fail"><li><b>Measurement noise (1% on the observations):</b> no non-null law recovered by either method. The best predictor averages noisy earlier frames, which cleans the input, and it predicts held-out data better than the true law (down to 0.43× its error). The fixed library also misses outright in 5 runs. Recovering the law here needs a noise model (errors-in-variables). Not done.</li>
+<li><b>Natural photographs:</b> about a tie with a fixed radius-2 stencil. The JPEG-LS median predictor wins on brick, camera, moon and astronaut, because edges need a nonlinear switch that a linear law lacks. On coins the law is worse (it stopped at 3 terms; the validation band differs from the test band).</li>
+<li><b>Real video:</b> on the cockatoo clip the 4-term law barely beats "nothing changes", and a dense 40-term library regression wins clearly. A bird is not a sparse law.</li>
+<li><b>Speed:</b> for laws inside its stencil the fixed library is as accurate and faster (median 1.0 s vs 2.7 s per run).</li>
+<li><b>Grammar limits:</b> shifts of u, u², u³ at any offset and delay; products only of nearby values. There are no space-varying coefficients and no hidden variables.</li>
+<li><b>Tuning:</b> thresholds were set on development seeds 1–5 of the same worlds. The benchmark uses fresh seeds 101–105, but the worlds themselves were known while developing.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Real still images</h2>
+  <p>For a still image the law predicts each pixel from pixels already decoded (raster order), so it is a lossless-coding predictor. Fitted on the top band of the image, accepted on the next band, scored on the bottom band. Bits per pixel of the rounded residual, lower is better. These are bare predictors; real coders add context modelling on top.</p>
+  <figure><img src="site/fig/images_bpp.png" alt="Dot plot of bits per pixel for each image and predictor"></figure>
+  <div class="scroll"><table><thead><tr><th>image</th><th>terms</th><th>reach px</th><th>JPEG-LS median</th><th>LS radius 2</th><th>discovered law</th></tr></thead><tbody>{{IMAGES}}</tbody></table></div>
+  <p class="mono" style="font-size:.85rem;color:var(--muted)">Synthetic texture with a known law: {{SYNTH}}</p>
+  <figure><img src="site/fig/stencils.png" alt="Offsets each image's law reads from"></figure>
+</section>
+
+<section>
+  <h2>Real video</h2>
+  {{VIDEO}}
+</section>
+
+<section>
+  <h2>Run it</h2>
+<pre>pip install numpy scipy matplotlib scikit-image opencv-python pytest
+python -m pytest -q tests                     # 7 tests, ~15 s
+python scripts/run_worlds.py                   # mystery-world benchmark
+python scripts/run_images.py                   # real images
+python scripts/run_video.py --video clip.mp4   # any video
+python scripts/run_video.py --camera 0         # your webcam</pre>
+</section>
+</main>
+</body>
+</html>
