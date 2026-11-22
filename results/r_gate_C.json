@@ -1,0 +1,681 @@
+{
+ "part": "C",
+ "seeds": [
+  701,
+  702,
+  703
+ ],
+ "rows": [
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 2,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "+0.000272 +1.843521*u[t-1] -0.843390*u[t-2]",
+   "seconds": 3.6
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000027 +0.580030*u[t-1] -0.205746*u[t-1]^3 +0.156437*u[t-1](+1,+0) +0.156460*u[t-1](-1,+0) +0.156263*u[t-1](+0,+1) +0.156044*u[t-1](+0,-1)",
+   "seconds": 11.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 3,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, -1, 0)",
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "-0.000058 +1.869463*u[t-1] -0.871294*u[t-2] +0.002042*u[t-3](-1,+0)^3",
+   "seconds": 7.0
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, 0, 0)",
+    "('shift', 'id', 1, -1, 1)",
+    "('shift', 'id', 1, 1, -1)",
+    "('shift', 'id', 3, -1, 1)",
+    "('shift', 'id', 3, 1, -1)"
+   ],
+   "law": "-0.000187 +0.947817*u[t-1] -0.043782*u[t-3]^3 +0.116675*u[t-1](+1,-1) +0.128359*u[t-1](-1,+1) -0.067298*u[t-3](+1,-1) -0.078568*u[t-3](-1,+1)",
+   "seconds": 24.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 2,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "+0.000012 +1.866612*u[t-1] -0.866644*u[t-2]",
+   "seconds": 3.7
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 1,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [],
+   "law": "-0.000209 +1.003545*u[t-1]",
+   "seconds": 1.6
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [
+    "('shift', 'id', 1, 0, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "+0.000024 +0.225918*u[t-1](+1,+0) +0.226204*u[t-1](-1,+0) +0.222646*u[t-1](+0,+1) +0.221970*u[t-1](+0,-1) +0.103043*u[t-2] -0.141990*u[t-1]*u[t-1](+0,+1) +0.141927*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 54.8
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000031 +0.198022*u[t-1](+1,+0) +0.198142*u[t-1](-1,+0) +0.198856*u[t-1](+0,+1) +0.197964*u[t-1](+0,-1) +0.205887*u[t-1] -0.124237*u[t-1]*u[t-1](+0,+1) +0.123839*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 32.3
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [
+    "('shift', 'id', 1, 0, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "-0.000081 +0.225422*u[t-1](+1,+0) +0.224618*u[t-1](-1,+0) +0.222220*u[t-1](+0,+1) +0.222062*u[t-1](+0,-1) +0.140365*u[t-1](+0,-1)*u[t-1] -0.140771*u[t-1]*u[t-1](+0,+1) +0.105674*u[t-2]",
+   "seconds": 53.9
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000094 +0.196790*u[t-1](+1,+0) +0.196696*u[t-1](-1,+0) +0.200820*u[t-1](+0,+1) +0.201426*u[t-1](+0,-1) -0.123720*u[t-1]*u[t-1](+0,+1) +0.123809*u[t-1](+0,-1)*u[t-1] +0.203652*u[t-1]",
+   "seconds": 30.5
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 8,
+   "n_truth": 7,
+   "missing": [
+    "('shift', 'id', 1, 0, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, -1)",
+    "('shift', 'id', 2, 0, 1)"
+   ],
+   "law": "-0.000077 +0.258367*u[t-1](+1,+0) +0.258712*u[t-1](-1,+0) +0.117983*u[t-1](+0,+1) +0.101281*u[t-1](+0,-1) +0.122634*u[t-2](+0,+1) +0.141082*u[t-2](+0,-1) -0.160040*u[t-1]*u[t-1](+0,+1) +0.160300*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 60.5
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.0,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000048 +0.200060*u[t-1](+1,+0) +0.200840*u[t-1](-1,+0) +0.197148*u[t-1](+0,+1) +0.198910*u[t-1](+0,-1) +0.202766*u[t-1] +0.125189*u[t-1](+0,-1)*u[t-1] -0.124828*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 45.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 2,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "+0.000293 +1.840070*u[t-1] -0.839934*u[t-2]",
+   "seconds": 3.6
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000004 +0.580159*u[t-1] -0.205925*u[t-1]^3 +0.156637*u[t-1](+1,+0) +0.156657*u[t-1](-1,+0) +0.156089*u[t-1](+0,+1) +0.155838*u[t-1](+0,-1)",
+   "seconds": 12.0
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 4,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 1, 1, -1)",
+    "('shift', 'id', 2, 0, 0)",
+    "('shift', 'id', 3, 1, -1)"
+   ],
+   "law": "-0.000051 +1.788420*u[t-1] -0.789721*u[t-2] -0.050538*u[t-3](+1,-1) +0.051541*u[t-1](+1,-1)",
+   "seconds": 10.6
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, 0, 0)",
+    "('shift', 'id', 1, -1, 1)",
+    "('shift', 'id', 1, 1, -1)",
+    "('shift', 'id', 3, -1, 1)",
+    "('shift', 'id', 3, 1, -1)"
+   ],
+   "law": "-0.000191 +0.947360*u[t-1] -0.044010*u[t-3]^3 +0.115364*u[t-1](+1,-1) +0.127190*u[t-1](-1,+1) -0.065633*u[t-3](+1,-1) -0.077010*u[t-3](-1,+1)",
+   "seconds": 25.0
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 2,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)"
+   ],
+   "law": "-0.000003 +1.865192*u[t-1] -0.865216*u[t-2]",
+   "seconds": 3.8
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 1,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [],
+   "law": "-0.000243 +1.003516*u[t-1]",
+   "seconds": 1.8
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000051 +0.197803*u[t-1](+1,+0) +0.198027*u[t-1](-1,+0) +0.198695*u[t-1](+0,+1) +0.197687*u[t-1](+0,-1) -0.124965*u[t-1]*u[t-1](+0,+1) +0.124477*u[t-1](+0,-1)*u[t-1] +0.206962*u[t-1]",
+   "seconds": 44.7
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000056 +0.198268*u[t-1](+1,+0) +0.198485*u[t-1](-1,+0) +0.198603*u[t-1](+0,+1) +0.197638*u[t-1](+0,-1) +0.205828*u[t-1] -0.124421*u[t-1]*u[t-1](+0,+1) +0.123852*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 36.5
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000094 +0.200226*u[t-1](+1,+0) +0.200047*u[t-1](-1,+0) +0.202273*u[t-1](+0,+1) +0.202835*u[t-1](+0,-1) +0.124772*u[t-1](+0,-1)*u[t-1] -0.124692*u[t-1]*u[t-1](+0,+1) +0.194631*u[t-1]",
+   "seconds": 48.2
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000098 +0.195931*u[t-1](+1,+0) +0.195929*u[t-1](-1,+0) +0.201079*u[t-1](+0,+1) +0.201816*u[t-1](+0,-1) -0.123525*u[t-1]*u[t-1](+0,+1) +0.123666*u[t-1](+0,-1)*u[t-1] +0.204586*u[t-1]",
+   "seconds": 33.2
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000068 +0.198214*u[t-1](+1,+0) +0.198848*u[t-1](-1,+0) +0.200085*u[t-1](+0,+1) +0.201863*u[t-1](+0,-1) +0.201079*u[t-1] +0.126873*u[t-1](+0,-1)*u[t-1] -0.126344*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 37.0
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.005,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000058 +0.200500*u[t-1](+1,+0) +0.201252*u[t-1](-1,+0) +0.197248*u[t-1](+0,+1) +0.199001*u[t-1](+0,-1) +0.201770*u[t-1] +0.125444*u[t-1](+0,-1)*u[t-1] -0.125021*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 50.0
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 4,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, 0, 0)",
+    "('shift', 'id', 3, 0, 0)"
+   ],
+   "law": "+0.000156 +1.499821*u[t-1] -0.503048*u[t-3] +0.057048*u[t-3]^3 -0.052978*u[t-1]^3",
+   "seconds": 12.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000019 +0.580600*u[t-1] -0.205965*u[t-1]^3 +0.156715*u[t-1](+1,+0) +0.156732*u[t-1](-1,+0) +0.155811*u[t-1](+0,+1) +0.155531*u[t-1](+0,-1)",
+   "seconds": 12.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "miss",
+   "n_found": 4,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, 0, 0)",
+    "('shift', 'id', 3, 0, 0)"
+   ],
+   "law": "-0.000042 +1.533880*u[t-1] -0.535422*u[t-3] +0.090582*u[t-3]^3 -0.088504*u[t-1]^3",
+   "seconds": 12.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 10,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 3, 0, 0)",
+    "('shift', 'id', 2, -1, -1)",
+    "('shift', 'id', 2, -1, 1)",
+    "('shift', 'id', 2, 1, -1)",
+    "('shift', 'id', 2, 1, 1)"
+   ],
+   "law": "-0.000036 +0.524653*u[t-1] -0.116893*u[t-3]^3 +0.188489*u[t-1](+1,+0) +0.194543*u[t-1](-1,+0) +0.185275*u[t-1](+0,+1) +0.187514*u[t-1](+0,-1) -0.040172*u[t-2](+1,-1) -0.041805*u[t-2](-1,+1) -0.037646*u[t-2](+1,+1) -0.041801*u[t-2](-1,-1)",
+   "seconds": 77.0
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000013 +0.604320*u[t-1] +0.148839*u[t-1](+1,+0) +0.149023*u[t-1](-1,+0) +0.147569*u[t-1](+0,+1) +0.149165*u[t-1](+0,-1) -0.199011*u[t-1]^3",
+   "seconds": 18.2
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "miss",
+   "n_found": 1,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [],
+   "law": "-0.000280 +1.003440*u[t-1]",
+   "seconds": 1.8
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000076 +0.197360*u[t-1](+1,+0) +0.197684*u[t-1](-1,+0) +0.197893*u[t-1](+0,+1) +0.196928*u[t-1](+0,-1) +0.209146*u[t-1] -0.124989*u[t-1]*u[t-1](+0,+1) +0.124328*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 33.8
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000082 +0.198633*u[t-1](+1,+0) +0.198943*u[t-1](-1,+0) +0.198497*u[t-1](+0,+1) +0.197473*u[t-1](+0,-1) +0.205251*u[t-1] -0.124661*u[t-1]*u[t-1](+0,+1) +0.123919*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 36.7
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000099 +0.199133*u[t-1](+1,+0) +0.199079*u[t-1](-1,+0) +0.202791*u[t-1](+0,+1) +0.203426*u[t-1](+0,-1) +0.195541*u[t-1] +0.124732*u[t-1](+0,-1)*u[t-1] -0.124595*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 34.5
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000103 +0.195334*u[t-1](+1,+0) +0.195420*u[t-1](-1,+0) +0.201345*u[t-1](+0,+1) +0.202206*u[t-1](+0,-1) +0.205009*u[t-1] +0.123531*u[t-1](+0,-1)*u[t-1] -0.123337*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 38.1
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "iv",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000079 +0.198647*u[t-1](+1,+0) +0.199282*u[t-1](-1,+0) +0.200035*u[t-1](+0,+1) +0.201794*u[t-1](+0,-1) +0.200371*u[t-1] +0.127200*u[t-1](+0,-1)*u[t-1] -0.126600*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 35.5
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "process_ratio": 0.01,
+   "estimator": "ols",
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000068 +0.200870*u[t-1](+1,+0) +0.201599*u[t-1](-1,+0) +0.197285*u[t-1](+0,+1) +0.199020*u[t-1](+0,-1) +0.201035*u[t-1] +0.125700*u[t-1](+0,-1)*u[t-1] -0.125216*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 47.8
+  }
+ ],
+ "seconds": 997
+}

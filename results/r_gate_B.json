@@ -1,0 +1,675 @@
+{
+ "part": "B",
+ "seeds": [
+  701,
+  702,
+  703
+ ],
+ "rows": [
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.9960176928059635,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9363799567684097,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 0.9960176928059635,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000147 +0.606504*u[t-1] +0.148143*u[t-1](+1,+0) +0.148197*u[t-1](-1,+0) +0.146945*u[t-1](+0,+1) +0.146632*u[t-1](+0,-1) -0.196883*u[t-1]^3",
+   "seconds": 58.7
+  },
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.9488206894162988,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9488206894162988,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000212 +0.593620*u[t-1] +0.152533*u[t-1](+1,+0) +0.153020*u[t-1](-1,+0) +0.151200*u[t-1](+0,+1) +0.151240*u[t-1](+0,-1) -0.201949*u[t-1]^3",
+   "seconds": 46.0
+  },
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.9680096505374598,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9680096505374598,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000000 +0.603310*u[t-1] +0.149276*u[t-1](+1,+0) +0.149389*u[t-1](-1,+0) +0.147880*u[t-1](+0,+1) +0.149579*u[t-1](+0,-1) -0.199565*u[t-1]^3",
+   "seconds": 46.6
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.9606667556811049,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 8,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9606667556811049,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000126 +0.195544*u[t-1](+1,+0) +0.196072*u[t-1](-1,+0) +0.195916*u[t-1](+0,+1) +0.195090*u[t-1](+0,-1) +0.215942*u[t-1] -0.124924*u[t-1]*u[t-1](+0,+1) +0.123906*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 86.1
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.9935076017878661,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 7,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 0.9935076017878661,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000110 +0.196605*u[t-1](+1,+0) +0.196810*u[t-1](-1,+0) +0.203202*u[t-1](+0,+1) +0.203943*u[t-1](+0,-1) +0.199250*u[t-1] +0.124516*u[t-1](+0,-1)*u[t-1] -0.124259*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 69.4
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.96684073555875,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 8,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.96684073555875,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000101 +0.200076*u[t-1](+1,+0) +0.200719*u[t-1](-1,+0) +0.200136*u[t-1](+0,+1) +0.201814*u[t-1](+0,-1) +0.197521*u[t-1] +0.127964*u[t-1](+0,-1)*u[t-1] -0.127218*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 84.7
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 1.041998148153011,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 9,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.6451625203301782,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.975577812060173,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 1.041998148153011,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000107 +0.520287*u[t-1] +0.100240*u[t-1](+17,-9) +0.095488*u[t-1](+1,+0) +0.096010*u[t-1](-1,+0) +0.093829*u[t-1](+0,+1) +0.093182*u[t-1](+0,-1)",
+   "seconds": 97.0
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 1.001190560335848,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 9,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.7865592154068992,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 1.001190560335848,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000073 +0.497467*u[t-1] +0.099747*u[t-1](+17,-9) +0.100571*u[t-1](+1,+0) +0.099098*u[t-1](-1,+0) +0.101289*u[t-1](+0,+1) +0.101762*u[t-1](+0,-1)",
+   "seconds": 65.0
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 1.013046589729502,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.8305216166658504,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 1.013046589729502,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000031 +0.506179*u[t-1] +0.099864*u[t-1](+17,-9) +0.098538*u[t-1](+1,+0) +0.098260*u[t-1](-1,+0) +0.098978*u[t-1](+0,+1) +0.098286*u[t-1](+0,-1)",
+   "seconds": 42.6
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 701,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000171",
+   "seconds": 0.8
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 702,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000116",
+   "seconds": 0.9
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 703,
+   "sensor_ratio": 0.04,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000231",
+   "seconds": 0.9
+  },
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 701,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9856491085828252,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 9,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.724410085601037,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9856491085828252,
+     "n_terms": 8,
+     "exact": false
+    }
+   ],
+   "status": "miss",
+   "n_found": 8,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [
+    "('shift', 'id', 2, 0, 0)",
+    "('shift', 'id', 3, -1, 1)"
+   ],
+   "law": "+0.000192 +0.527906*u[t-1] +0.157892*u[t-1](+1,+0) +0.158878*u[t-1](-1,+0) +0.162728*u[t-1](+0,+1) +0.161526*u[t-1](+0,-1) -0.211495*u[t-1]^3 -0.000889*u[t-3](-1,+1) +0.042846*u[t-2]",
+   "seconds": 112.8
+  },
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 702,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9838466395513504,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 9,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.8440911145332985,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 0.9838466395513504,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000414 +0.574125*u[t-1] +0.160954*u[t-1](+1,+0) +0.161299*u[t-1](-1,+0) +0.155504*u[t-1](+0,+1) +0.155484*u[t-1](+0,-1) -0.207912*u[t-1]^3",
+   "seconds": 87.3
+  },
+  {
+   "part": "B",
+   "world": "allen_cahn",
+   "seed": 703,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 1.0075674192964579,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 10,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.841913981338685,
+     "n_terms": 6,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 1.0075674192964579,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000028 +0.618429*u[t-1] +0.143901*u[t-1](+1,+0) +0.144129*u[t-1](-1,+0) +0.141998*u[t-1](+0,+1) +0.145126*u[t-1](+0,-1) -0.193738*u[t-1]^3",
+   "seconds": 125.0
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 701,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9614360171952938,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 11,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9614360171952938,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000148 +0.192663*u[t-1](+1,+0) +0.193378*u[t-1](-1,+0) +0.192957*u[t-1](+0,+1) +0.191190*u[t-1](+0,-1) +0.227363*u[t-1] -0.124117*u[t-1]*u[t-1](+0,+1) +0.122809*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 79.3
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 702,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9907564304252098,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 8,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.910170736195701,
+     "n_terms": 7,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 0.9907564304252098,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000207 +0.203051*u[t-1](+1,+0) +0.202799*u[t-1](-1,+0) +0.209102*u[t-1](+0,+1) +0.210092*u[t-1](+0,-1) +0.175457*u[t-1] +0.125555*u[t-1](+0,-1)*u[t-1] -0.125240*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 106.3
+  },
+  {
+   "part": "B",
+   "world": "burgers",
+   "seed": 703,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 1.006867651512302,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 11,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9223430629052288,
+     "n_terms": 7,
+     "exact": true
+    },
+    {
+     "R_hat_over_R": 1.006867651512302,
+     "n_terms": 7,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000151 +0.195367*u[t-1](+1,+0) +0.196500*u[t-1](-1,+0) +0.198181*u[t-1](+0,+1) +0.201765*u[t-1](+0,-1) +0.208190*u[t-1] -0.127484*u[t-1]*u[t-1](+0,+1) +0.128620*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 171.2
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 701,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9423026136659214,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 10,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.8828736136797032,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9423026136659214,
+     "n_terms": 7,
+     "exact": false
+    }
+   ],
+   "status": "miss",
+   "n_found": 7,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [
+    "('shift', 'id', 2, 1, 1)"
+   ],
+   "law": "+0.000240 +0.114890*u[t-1](+1,+0) +0.130241*u[t-1](-1,+0) +0.100337*u[t-1](+0,+1) +0.112645*u[t-1](+0,-1) +0.102315*u[t-1](+17,-9) +0.428973*u[t-1] +0.012993*u[t-2](+1,+1)",
+   "seconds": 116.1
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 702,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.9700587333362933,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 9,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.7762805420516672,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9700587333362933,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000152 +0.470707*u[t-1] +0.099527*u[t-1](+17,-9) +0.112633*u[t-1](+1,+0) +0.111144*u[t-1](-1,+0) +0.103280*u[t-1](+0,+1) +0.103150*u[t-1](+0,-1)",
+   "seconds": 88.0
+  },
+  {
+   "part": "B",
+   "world": "wormhole",
+   "seed": 703,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 1.0055144356249335,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 8,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 0.9163279728432872,
+     "n_terms": 7,
+     "exact": false
+    },
+    {
+     "R_hat_over_R": 1.0055144356249335,
+     "n_terms": 6,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000022 +0.526592*u[t-1] +0.099805*u[t-1](+17,-9) +0.090163*u[t-1](+1,+0) +0.089953*u[t-1](-1,+0) +0.096339*u[t-1](+0,+1) +0.096525*u[t-1](+0,-1)",
+   "seconds": 70.8
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 701,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000333",
+   "seconds": 0.9
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 702,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000222",
+   "seconds": 0.9
+  },
+  {
+   "part": "B",
+   "world": "null",
+   "seed": 703,
+   "sensor_ratio": 0.08,
+   "final_R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat_over_R": 0.0,
+     "n_terms": 0,
+     "exact": true
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000415",
+   "seconds": 0.8
+  }
+ ],
+ "seconds": 1558
+}

@@ -37,3 +37,55 @@ Development checks (seeds 11, 12; not reused below):
 No claims for correlated, heavy-tailed or field-dependent noise, real sensors, or other law families.
 
 ---
+
+## Results (run 22 November 2026 after freezing; 180 cases, about 1.5 CPU-hours)
+
+Receipts: [`results/r_gate_A.json`](results/r_gate_A.json), [`results/r_gate_B.json`](results/r_gate_B.json), [`results/r_gate_C.json`](results/r_gate_C.json).
+
+### Part A — the selector is told R̂ = f·R (exact support, 3 seeds)
+
+| world | sensor | f = 0.75 | 0.9 | 1.0 | 1.1 | 1.25 |
+|---|---|---|---|---|---|---|
+| allen_cahn | 4% | 2/3 | 3/3 | 3/3 | 3/3 | **0/3** |
+| | 8% | 1/3 | 2/3 | 2/3 | **0/3** | **0/3** |
+| burgers | 4% | 3/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| | 8% | 3/3 | 3/3 | 3/3 | **0/3** | **0/3** |
+| wormhole | 4% | 2/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| | 8% | 0/3 | 1/3 | 3/3 | 2/3 | **0/3** |
+| null (false positives) | 4%, 8% | 0/6 | 0/6 | 0/6 | 0/6 | 0/6 |
+
+**The error is asymmetric, and the prediction had the wrong side.** Underestimating R costs a little, as predicted: all 10 underestimate failures are **one extra delayed copy** (lag 2 or 3) with nothing missing. Overestimating R is what collapses the search. At 8%, +10% already gives 0/3 on Allen–Cahn and Burgers, and +25% does the same everywhere. Those laws lose true stencil terms and fill up with delayed, cubed and product junk; one wormhole run picked offsets (±31, ±16). An over-corrected score subtracts too much noise from laws with large coefficients and many noisy inputs, so complex laws look better than they are. **Practical rule: if R is uncertain, err low.** Null worlds stayed empty at every f.
+
+### Part B — blind R from the noise echo (start R̂ = 0)
+
+| | 4% sensor | 8% sensor |
+|---|---|---|
+| exact support, blind R | **12/12** | 10/12 |
+| exact support, known R (part A, f = 1) | 12/12 | 11/12 |
+| final R̂/R, non-null worlds | 0.95–1.04 | 0.94–1.01 |
+| selections needed | 2–4 | 2–4 |
+
+The blind loop **matched known R within one case**. Its two 8% failures repeat failures the known-R runs already show:
+
+- **Allen–Cahn seed 701** found exactly the same two extra delayed terms as with the true R.
+- **Wormhole seed 701** stopped at R̂ = 0.94·R and picked up one extra term, u[t−2](+1,+1). Part A's f = 0.9 run on the same seed picked up that same term.
+
+The first selection at R̂ = 0 always contained delayed copies (7–11 terms). Its echo still gave R̂/R of 0.65–0.97, enough for the next selection to find the true law in most cases. Null worlds: the law stays empty and R̂ stays undefined (reported as 0), which is the correct answer.
+
+### Part C — weak excitation, known R, 4% sensor noise
+
+| process noise | Allen–Cahn IV | Allen–Cahn OLS | Burgers IV | Burgers OLS |
+|---|---|---|---|---|
+| 0 | 0/3 | 1/3 | **0/3** | **3/3** |
+| 0.5% | 0/3 | 1/3 | 3/3 | 3/3 |
+| 1% | 1/3 | 1/3 | 3/3 | 3/3 |
+| 2% (part A, f = 1) | 3/3 | – | 3/3 | – |
+
+**The prediction was wrong: at low excitation IV is worse, not better.**
+
+- **Burgers without process noise:** IV failed all three, each time swapping u[t−1](0,0) for u[t−2](0,0) (one seed swapped the side neighbours instead). OLS got all three. The field changes little from frame to frame, so the lag-1 and lag-2 copies differ only by that small change. The disjoint-time instruments, being older frames, barely see that difference, while OLS uses the regressors directly.
+- **Allen–Cahn below 2% process noise** fails for both estimators, and mostly misses the *same thing*: the whole diffusion stencil and u³, keeping only u[t−1]. Allen–Cahn relaxes into ±1 domains where D∇²u + r(u − u³) ≈ 0, so the stencil and the cube term nearly cancel on the states the data actually visits. That is an identifiability gap in the data, not an estimator choice.
+
+Both are nonlinear cases of what [Theorem](https://github.com/anttiluode/Theorem) calls a dark direction: the rival laws differ only along directions the passive dynamics barely excite. The result also differs from Sol's linear [fixed-R gate](FIXED_R_GATE.md), where IV beat OLS at 1% process noise (6/6 vs 0/6). Low excitation does not favour IV in general; which estimator wins depends on which direction is dark.
+
+**Limits.** Synthetic data, Gaussian i.i.d. sensor noise independent of the field (shown necessary in development), three seeds per cell, two nonlinear families, one grid size and trajectory length. The echo estimator needs a law with at least one lagged term; it is undefined for an empty law.

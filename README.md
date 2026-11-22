@@ -50,6 +50,14 @@ We analyzed two real public PhysioNet EEG baselines (S001, eyes open/closed; 64 
 
 The blind search now covers the full grammar (u, u², u³, nearby products). Validation uses an **exact Hermite corrected score**: an unbiased estimate of the latent one-step error of any polynomial law, computed from noisy frames and a known sensor variance. For linear laws it reduces to the IV-002 formula. On 3 new seeds per cell, with sensor noise 1–8% and 2% process noise, exact support recovery on Allen–Cahn and Burgers was **22/24 (IV) and 21/24 (OLS) with the exact score**, against **13/24 and 14/24** when the linear recipe is applied to nonlinear terms. That recipe fills the law with lag-2 and lag-3 denoising copies. Linear controls tie (23/24 vs 23/24), and null worlds gave 0 false positives in 48 selections. OLS matched IV here; with OLS, Allen–Cahn at 8% stalls after one term. Synthetic, known Gaussian R, one excitation level: see the limits in the report.
 
+## November 22 — Gate IV-005: unknown sensor variance and weak excitation
+
+[**Frozen method and results**](ESTIMATED_R_GATE.md) · [noise-echo estimator](luotain2/noise_echo.py) · [driver](scripts/run_r_gate.py) · [tests](tests/test_noise_echo.py).
+
+The sensor variance can now be found **blind** from the law's own **noise echo**. A frame's sensor noise reappears, weighted by minus the law's gradient, in every later residual that reads that frame (Stein's lemma), and nothing else links those residuals. The loop starts from R̂ = 0, selects a law, re-estimates R̂ from that law's echo, and selects again. On new seeds it reached **12/12 exact laws at 4% sensor noise and 10/12 at 8%**, against 12/12 and 11/12 with the true R given, with final R̂/R between 0.94 and 1.04.
+
+The miscalibration sweep is asymmetric. **Underestimating R adds at most one delayed term; overestimating it by 10% collapses the nonlinear searches at 8% noise.** At weak excitation, IV did **worse** than OLS on Burgers (0/3 vs 3/3 with no process noise), and Allen–Cahn failed for both. Both are dark directions in the passive data, not estimator bugs.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.
