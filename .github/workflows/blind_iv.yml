@@ -1,0 +1,36 @@
+name: Blind IV gate - experimental
+
+on:
+  push:
+    paths:
+      - 'luotain2/blind_iv.py'
+      - 'luotain2/iv.py'
+      - 'scripts/run_blind_iv_gate.py'
+      - 'tests/test_blind_iv.py'
+      - '.github/workflows/blind_iv.yml'
+  workflow_dispatch:
+
+jobs:
+  blind-measurement-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy pytest
+      - name: Synthetic pilot - blind heat and drift and wormhole and null
+        run: >
+          python scripts/run_blind_iv_gate.py
+          --worlds heat drift wormhole null
+          --seeds 101
+          --n 64 --T 40
+          --max-terms 12 --k-props 12
+          --out results/blind_iv_pilot.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blind-iv-pilot
+          path: results/blind_iv_pilot.json
+          if-no-files-found: warn
