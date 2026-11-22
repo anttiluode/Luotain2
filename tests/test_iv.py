@@ -21,7 +21,7 @@ def test_instruments_are_strictly_in_the_past():
     A, Z, b, meta = moment_matrices(frames, [TERM], window=2, gap=2, step=100)
     assert meta["lag_shift"] == 4
     assert meta["earliest_target_time"] == 5
-    assert np.allclose(A[:, 1], (4 + 5) / 2 - 1)
+    assert np.allclose(A[:, 1], (4 + 5) / 2)
     assert np.allclose(Z[:, 1], (0 + 1) / 2)
     assert np.allclose(b, (5 + 6) / 2)
 
