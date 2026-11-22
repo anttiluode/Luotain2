@@ -1,0 +1,52 @@
+name: Fixed-R and matched OLS-vs-IV blind discovery
+
+on:
+  push:
+    paths:
+      - 'luotain2/blind_iv.py'
+      - 'scripts/run_blind_iv_gate.py'
+      - 'tests/test_fixed_r_ols_iv.py'
+      - '.github/workflows/fixed_r_ablation.yml'
+  workflow_dispatch:
+
+jobs:
+  paired-excitation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      matrix:
+        estimator: [iv, ols]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy pytest
+      - name: Verify paired estimator and fixed-R generation
+        run: python -m pytest -q tests/test_fixed_r_ols_iv.py
+      - name: Fixed absolute R and matched latent power on new seeds
+        shell: bash
+        run: |
+          mkdir -p results/fixed_r/${{ matrix.estimator }}
+          for p in 0 0.005 0.01 0.02 0.04; do
+            echo "===== ${{ matrix.estimator }} process $p; sensor std .01; latent std .25 ====="
+            python scripts/run_blind_iv_gate.py \
+              --worlds wormhole diagonal \
+              --seeds 501 502 503 \
+              --kind combined \
+              --estimator ${{ matrix.estimator }} \
+              --process-ratio "$p" \
+              --sensor-std 0.01 \
+              --match-latent-std 0.25 \
+              --noise 0.01 \
+              --n 64 --T 40 \
+              --max-terms 12 --k-props 12 \
+              --out "results/fixed_r/${{ matrix.estimator }}/p_${p}.json"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fixed-r-${{ matrix.estimator }}
+          path: results/fixed_r/${{ matrix.estimator }}
+          if-no-files-found: warn
