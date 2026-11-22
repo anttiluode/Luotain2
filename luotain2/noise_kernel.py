@@ -250,7 +250,7 @@ class BlindKernelDiscoverer(BlindPolyDiscoverer):
 
 
 # ------------------------------------------------------------------ probe-law kernel
-def probe_terms(extra=(), lags=(1, 2), half=1):
+def probe_terms(extra=(), lags=(1,), half=1):
     """A deliberately over-complete local law: every shift within `half` at each lag,
     u^2, u^3 and the four nearest-neighbour products at lag 1, plus any `extra` terms (e.g. a first selection's non-local links)."""
     ts = [("shift", "id", L, dy, dx) for L in lags
