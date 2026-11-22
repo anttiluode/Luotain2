@@ -13,7 +13,7 @@ on:
 jobs:
   blind-measurement-gate:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,9 +28,29 @@ jobs:
           --n 64 --T 40
           --max-terms 12 --k-props 12
           --out results/blind_iv_pilot.json
+      - name: Fresh-seed frozen protocol - all seven linear and null worlds
+        run: >
+          python scripts/run_blind_iv_gate.py
+          --worlds heat diagonal drift wave wormhole echo null
+          --seeds 201 202 203 204 205
+          --n 64 --T 40
+          --max-terms 12 --k-props 12
+          --out results/blind_iv_fresh_35.json
+      - name: Combined-noise stress on frozen method
+        run: >
+          python scripts/run_blind_iv_gate.py
+          --worlds heat wave wormhole echo null
+          --seeds 201 202
+          --kind combined
+          --n 64 --T 40
+          --max-terms 12 --k-props 12
+          --out results/blind_iv_combined_10.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: blind-iv-pilot
-          path: results/blind_iv_pilot.json
+          path: |
+            results/blind_iv_pilot.json
+            results/blind_iv_fresh_35.json
+            results/blind_iv_combined_10.json
           if-no-files-found: warn
