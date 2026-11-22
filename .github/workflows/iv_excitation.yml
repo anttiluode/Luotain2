@@ -1,0 +1,37 @@
+name: Blind IV excitation sweep (frozen search)
+
+on:
+  push:
+    paths:
+      - 'scripts/run_blind_iv_gate.py'
+      - '.github/workflows/iv_excitation.yml'
+  workflow_dispatch:
+
+jobs:
+  excitation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy
+      - name: Sweep independent excitation on new seeds
+        run: |
+          mkdir -p results/iv_excitation
+          for p in 0 0.005 0.01 0.02 0.04; do
+            echo "===== process ratio $p, fixed sensor ratio .01 ====="
+            python scripts/run_blind_iv_gate.py \
+              --worlds wormhole diagonal \
+              --seeds 301 302 303 --kind combined \
+              --process-ratio "$p" --noise 0.01 \
+              --n 64 --T 40 --max-terms 12 --k-props 12 \
+              --out "results/iv_excitation/p_${p}.json"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blind-iv-excitation-sweep
+          path: results/iv_excitation
+          if-no-files-found: warn
