@@ -1,0 +1,106 @@
+{
+  "title": "Luotain2 IV-003 paired fixed-R and matched-power structural identifiability",
+  "date": "2026-11-22",
+  "workflow": "https://github.com/anttiluode/Luotain2/actions/runs/45022617505",
+  "artifacts": {
+    "iv": "https://github.com/anttiluode/Luotain2/actions/runs/45022617505/artifacts/14753649828",
+    "ols": "https://github.com/anttiluode/Luotain2/actions/runs/45022617505/artifacts/14755120626"
+  },
+  "status": "both CI jobs passed; new frozen synthetic seeds; unmodified original Discoverer",
+  "design": {
+    "worlds": [
+      "wormhole",
+      "diagonal"
+    ],
+    "seeds": [
+      501,
+      502,
+      503
+    ],
+    "process_ratios": [
+      0,
+      0.005,
+      0.01,
+      0.02,
+      0.04
+    ],
+    "sensor_std_absolute": 0.01,
+    "sensor_variance_absolute": 0.0001,
+    "matched_latent_global_std": 0.25,
+    "effective_sensor_to_latent_std_ratio": 0.04,
+    "support_known_to_search": false,
+    "search_family": "linear time-delayed shifted fields; FFT residual proposals plus explicitly supplied local-neighbor stencil groups",
+    "selection": "noise-corrected validation error plus fixed complexity penalty",
+    "estimator_comparison": "IV/OLS use identical observed simulation, same regressor time indices and same candidate selection algorithm; fitted residuals can cause subsequent candidate sequences to diverge",
+    "cases_per_estimator": 30
+  },
+  "by_process": [
+    {
+      "process": 0,
+      "iv_exact": 0,
+      "ols_exact": 0,
+      "cases": 6,
+      "iv_wormhole": 0,
+      "iv_diagonal": 0,
+      "ols_wormhole": 0,
+      "ols_diagonal": 0
+    },
+    {
+      "process": 0.005,
+      "iv_exact": 3,
+      "ols_exact": 0,
+      "cases": 6,
+      "iv_wormhole": 2,
+      "iv_diagonal": 1,
+      "ols_wormhole": 0,
+      "ols_diagonal": 0
+    },
+    {
+      "process": 0.01,
+      "iv_exact": 6,
+      "ols_exact": 0,
+      "cases": 6,
+      "iv_wormhole": 3,
+      "iv_diagonal": 3,
+      "ols_wormhole": 0,
+      "ols_diagonal": 0
+    },
+    {
+      "process": 0.02,
+      "iv_exact": 6,
+      "ols_exact": 6,
+      "cases": 6,
+      "iv_wormhole": 3,
+      "iv_diagonal": 3,
+      "ols_wormhole": 3,
+      "ols_diagonal": 3
+    },
+    {
+      "process": 0.04,
+      "iv_exact": 6,
+      "ols_exact": 6,
+      "cases": 6,
+      "iv_wormhole": 3,
+      "iv_diagonal": 3,
+      "ols_wormhole": 3,
+      "ols_diagonal": 3
+    }
+  ],
+  "total_exact": {
+    "iv": 21,
+    "ols": 12,
+    "cases_each": 30
+  },
+  "interpretation": "Both procedures depend on process excitation. At a fixed total latent field SD and fixed absolute sensor SD, disjoint-time IV recovers exact support at lower excitation than matched-row OLS on the two chosen synthetic families. No unique general threshold or causal theorem is proved.",
+  "limits": [
+    "Only two known synthetic model families, 3 seeds each",
+    "Local-stencil proposals are explicitly given; not general open-grammar discovery",
+    "Strict spatially i.i.d. additive Gaussian sensor noise, calibrated from benchmark settings",
+    "Equal global variance does not equalize spectral rank, modal distribution, time-dependent variance, or instrument strength",
+    "The tested sensor noise SD is 4% of latent field SD, not the original 1% relative-noise setting",
+    "Process-noise ratio is simulator-specific and not physiologically calibrated",
+    "All candidate support evaluations and fitting remain synthetic, no real EEG anatomical coupling established",
+    "IV and OLS follow potentially different proposal histories after their first fitted residual",
+    "Estimation of noise variance from observations was not tested"
+  ]
+}
