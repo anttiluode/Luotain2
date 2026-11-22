@@ -131,3 +131,36 @@ the true remote link as process noise increases supports an excitation/
 identifiability explanation. A flat or erratic response weakens it.
 A diagonal world that still fails while wormhole succeeds indicates
 different ambiguity structures rather than one universal IV fix.
+
+
+### Frozen excitation sweep outcome — new seeds 301–303
+
+[Successful workflow with six-case-per-level row-level receipts](https://github.com/anttiluode/Luotain2/actions/runs/45020756202) · [Persistent compact JSON summary](results/iv_excitation_summary.json).
+
+| Process noise | Wormhole exact | Diagonal exact | Overall |
+|---|---:|---:|---:|
+| 0% | 0/3 | 0/3 | **0/6** |
+| 0.5% | 1/3 | 0/3 | **1/6** |
+| 1% | 3/3 | 3/3 | **6/6** |
+| 2% | 3/3 | 3/3 | **6/6** |
+| 4% | 3/3 | 3/3 | **6/6** |
+
+The same search code and hyperparameters were used throughout, with 1%
+relative sensor-noise level. The true wormhole and diagonal-shift terms
+transitioned from consistently missed to consistently recovered as fresh
+process disturbances were introduced. This supports an **excitation-limited
+identifiability** explanation for the two synthetic worlds. The numerical
+1% transition is **not a universal threshold**.
+
+**Confound to kill next:** the simulator scales camera noise as 1% of
+each process-driven trajectory's standard deviation. Thus varying
+process noise also changes the latent amplitude distribution and absolute
+sensor variance. A proper paired intervention should use fixed absolute
+sensor variance, identical initial conditions and independent innovations,
+then measure instrumental relevance / modal excitation before fitting.
+A matched OLS-vs-IV support-search ablation is also needed to isolate
+how much success comes from the IV coefficient estimator versus the
+corrected validation risk and explicit local-stencil challenger.
+
+Do not claim a new theorem, a solved inverse for real noisy videos or
+full nonlinear Luotain2 recovery from these restricted synthetic results.
