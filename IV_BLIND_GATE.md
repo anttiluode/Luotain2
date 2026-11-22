@@ -99,3 +99,35 @@ discrete autoregression IV can have greater variance than OLS.
 
 **Research status:** useful synthetic method; no novel theorem, no natural
 sensor validation, no claim to general nonlinear law discovery.
+
+
+## Follow-up mechanism test: frozen process-excitation sweep
+
+[Workflow definition](.github/workflows/iv_excitation.yml) (results
+archived as a downloadable artifact; new seeds 301, 302, 303).
+
+This *exploratory follow-up* was specified after the frozen 35+10 results.
+It leaves the search code and hyperparameters unchanged and intervenes
+only on the amount of **process noise** in the simulator while retaining
+**1% i.i.d. sensor noise**. It probes the two worlds that were consistently
+missed under measurement-only noise: wormhole and diagonal diffusion.
+
+Process-noise ratios: **0%, 0.5%, 1%, 2%, 4%**, three new seeds each,
+30 total tests. At every ratio, report exact support recovery and the
+actual recovered coefficients. Do not score performance from the same
+seeds by retuning the optimizer.
+
+Hypothesis: with zero process noise a stable smoothing field quickly
+collapses to a low-dimensional subspace, leaving many time-lagged and
+spatial-shifted explanations nearly indistinguishable. Random external
+excitation may preserve more independent variation, making the law's
+remote spatial coupling observable. But a change in process noise also
+changes the absolute latent variance and hence the camera noise scale
+under our fixed *relative* noise definition; the sweep is diagnostic,
+not a fully isolated causal proof.
+
+**Outcomes:** A repeatable transition from wrong delayed-copy terms to
+the true remote link as process noise increases supports an excitation/
+identifiability explanation. A flat or erratic response weakens it.
+A diagonal world that still fails while wormhole succeeds indicates
+different ambiguity structures rather than one universal IV fix.
