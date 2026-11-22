@@ -1,0 +1,80 @@
+{
+  "title": "Luotain2 Gate IV-002 process-excitation sensitivity",
+  "date": "2026-11-22",
+  "run_url": "https://github.com/anttiluode/Luotain2/actions/runs/45020756202",
+  "artifact_url": "https://github.com/anttiluode/Luotain2/actions/runs/45020756202/artifacts/14754355595",
+  "status": "synthetic frozen-parameter exploratory follow-up",
+  "design": {
+    "search_terms_given": false,
+    "worlds": [
+      "wormhole",
+      "diagonal"
+    ],
+    "seeds": [
+      301,
+      302,
+      303
+    ],
+    "process_ratios": [
+      0,
+      0.005,
+      0.01,
+      0.02,
+      0.04
+    ],
+    "measurement_noise_ratio": 0.01,
+    "kind": "combined",
+    "T": 40,
+    "n": 64,
+    "max_terms": 12,
+    "k_props": 12,
+    "method": "blind IV+corrected-risk with declared local-stencil challenger",
+    "changes_between_conditions": "process-noise amplitude only; sensor noise relative ratio stays fixed to simulated state STD"
+  },
+  "exact_recovery": [
+    {
+      "process": 0,
+      "wormhole": 0,
+      "diagonal": 0,
+      "total": 0,
+      "cases": 6
+    },
+    {
+      "process": 0.005,
+      "wormhole": 1,
+      "diagonal": 0,
+      "total": 1,
+      "cases": 6
+    },
+    {
+      "process": 0.01,
+      "wormhole": 3,
+      "diagonal": 3,
+      "total": 6,
+      "cases": 6
+    },
+    {
+      "process": 0.02,
+      "wormhole": 3,
+      "diagonal": 3,
+      "total": 6,
+      "cases": 6
+    },
+    {
+      "process": 0.04,
+      "wormhole": 3,
+      "diagonal": 3,
+      "total": 6,
+      "cases": 6
+    }
+  ],
+  "interpretation": "Excitation appears to improve identifiability of spatially shifted terms relative to delayed-copy approximations in two restricted synthetic field generators",
+  "caveats": [
+    "The process noise ratio changes latent state distribution and effective absolute sensor noise, though the relative sensor-noise ratio stays 1%",
+    "This does not prove causality of increased excitation independent of all other changes; fix absolute sensor variance and measure excitation spectrum in follow-up",
+    "New seeds but same synthetic model family, no real sensor validation",
+    "Only two world families, three seeds each, and known candidate grammar",
+    "No new mathematical theorem, and no claim to WAIVES SDE consistency or full nonlinear discovery",
+    "Local stencil challenger gives prior structural advantage for diagonal diffusion"
+  ]
+}
