@@ -87,6 +87,7 @@ def main():
     p.add_argument("--n",type=int,default=64)
     p.add_argument("--T",type=int,default=40)
     p.add_argument("--noise",type=float,default=.01)
+    p.add_argument("--process-ratio",type=float,default=.02)
     p.add_argument("--kind",choices=["measurement","combined"],default="measurement")
     p.add_argument("--delta",type=float,default=.003)
     p.add_argument("--k-props",type=int,default=20)
@@ -96,7 +97,7 @@ def main():
     p.add_argument("--out",default="results/blind_iv_gate.json")
     a=p.parse_args()
     report=run(a.worlds,a.seeds,a.noise,a.kind,a.n,a.T,
-               a.delta,a.k_props,a.max_terms,a.pixel_stride,a.max_condition)
+               a.delta,a.k_props,a.max_terms,a.pixel_stride,a.max_condition,a.process_ratio)
     print("RESULT",json.dumps(report["summary"],sort_keys=True),flush=True)
     if a.out:
         dest=Path(a.out);dest.parent.mkdir(parents=True,exist_ok=True)
