@@ -29,3 +29,58 @@ This experiment holds both the **absolute sensor standard deviation** and the **
 - If results vary by seed and model, no universal 1% transition should be claimed.
 
 A true additional ablation would compare the same corrected score with IV/OLS under candidate grammars **with and without** the hand-declared four-neighbor stencil, then transfer across wholly different linear field generators and real sensors. The existing EEG pilot is not equivalent: scalp electrodes measure mixtures of hidden sources, not a periodic 2-D spatial law.
+
+
+## Verified results — both OLS and IV jobs passed
+
+[Successful paired workflow](https://github.com/anttiluode/Luotain2/actions/runs/45022617505) · [IV per-case receipts](https://github.com/anttiluode/Luotain2/actions/runs/45022617505/artifacts/14753649828) · [OLS per-case receipts](https://github.com/anttiluode/Luotain2/actions/runs/45022617505/artifacts/14755120626) · [Persistent JSON summary](results/fixed_r_ols_iv_summary.json).
+
+| Process-noise ratio | IV exact support | OLS exact support |
+|---|---:|---:|
+| 0% | 0/6 | 0/6 |
+| 0.5% | 3/6 | 0/6 |
+| 1% | **6/6** | 0/6 |
+| 2% | **6/6** | **6/6** |
+| 4% | **6/6** | **6/6** |
+| **Total** | **21/30** | **12/30** |
+
+The 0.5% IV row comprises two wormhole and one diagonal exact
+recoveries. At 1%, IV recovered both worlds for all three seeds;
+matched OLS recovered neither. At 2% and 4%, both recovered every law.
+All 30 IV cases and all 30 OLS cases were evaluated under **the same
+fixed absolute sensor standard deviation 0.01 and matched global latent
+SD 0.25**; the per-row receipts confirm the latter to numerical precision.
+
+**What this supports:**
+
+1. The synthetic wormhole and diagonal law identification failures are
+   sensitive to how the system is excited even when overall signal
+   variance and sensor-noise variance are controlled.
+2. With identical simulated inputs, disjoint-time IV outperforms
+   matched-row OLS on exact support recovery in the marginal-excitation
+   setting tested. In this model family, IV succeeded at 1% process
+   noise and OLS required 2%.
+3. As excitation increases further, the advantage vanishes: both
+   methods reach 6/6.
+
+**What it does NOT support:** a universal process-noise threshold,
+unbiased estimation of any general SDE/SPDE, automatic selection of
+nonlinear laws, or the inference of neural wiring from scalp EEG.
+Global variance matching cannot control the spectral shape or
+condition of the instrument matrix. Only two designed field generators,
+three independent seeds each, a fixed known observation variance and
+one declared local-stencil proposal prior were tested. The first fitted
+residual can differ between IV and OLS, so although the algorithmic
+proposal rule is identical, the exact candidate sequences later on
+need not be.
+
+**Next scientific diagnostic:** measure the eigen/singular spectrum
+of the centered instrument–regressor cross moment for the *true*
+candidate support, evaluate before the fitter sees the true terms.
+Examine the signal's mode-by-mode excitation and compare it to the
+frequency bands where the wormhole's shifted feature carries
+distinguishing information. Then repeat with novel random offsets,
+random law coefficients and correlated sensor noise, including false
+connection controls. A stable observation-dependent confidence
+boundary would be a more useful instrument than a single impressive
+success percentage.
