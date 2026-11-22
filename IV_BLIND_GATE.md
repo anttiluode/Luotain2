@@ -39,3 +39,63 @@ The meaningful distinguishing targets are long-range **wormhole (+17,-9)** and d
     python scripts/run_blind_iv_gate.py --worlds heat drift wormhole null --seeds 101 --max-terms 12 --k-props 12
 
 Do not retune on fresh-test seeds without declaring a new exploratory phase and freezing another separate holdout. Process-noise failures, false positives and missing nonlocal links remain in the denominator.
+
+## Frozen fresh-seed results — November 22, 2026
+
+**[Successful workflow and complete downloadable row-level JSON receipts](https://github.com/anttiluode/Luotain2/actions/runs/45019980713)** (artifact name: blind-iv-pilot).
+
+This was the first evaluation of the revised selector on previously unseen
+seeds 201–205, after all settings were tuned on the separate seed-101 pilot.
+
+| World | Exact supports, 1% independent sensor noise |
+|---|---:|
+| Heat | **5/5** |
+| Diagonal diffusion | **0/5** |
+| Drift | **5/5** |
+| Wave | **5/5** |
+| Wormhole (+17,-9, lag 1) | **0/5** |
+| Delayed echo (-11,+23, lag 3) | **5/5** |
+| Null | **5/5** |
+
+**Total 25/35** including null: **20/30 non-null linear** and **5/5 null
+correct**. Do not compare the denominator directly with Luotain2's original
+35 *non-null* trials, which include nonlinear worlds and exclude the echo's
+measurement-noise condition.
+
+The **diagonal** failures are repeatable, not random scatter: the recovered
+model has two dominant lag-one diagonal terms (~0.238), an inflated
+self-term (~0.469), and two small lag-two opposite-diagonal terms (~0.0275).
+It omits the four true immediate cardinal diffusion terms. The **wormhole**
+failure is similarly systematic: about **+1.77*u[t-1] -0.79*u[t-2]** and
+a tiny false lag-two spatial term (instead of six true terms including
+the +17,-9 remote link). This is a concrete **predictor/law
+non-identifiability** problem in low-excitation smooth fields, not a
+missing coefficient solver.
+
+### Combined-noise stress (same frozen settings)
+
+With **2% process noise plus 1% sensor noise**, seeds 201–202:
+
+| World | Exact |
+|---|---:|
+| Heat | 2/2 |
+| Wave | 1/2 (one run included an extra diagonal term) |
+| Wormhole | **2/2** |
+| Echo | 2/2 |
+| Null | 2/2 |
+
+**9/10 exact.** The wormhole's remote coefficient was **0.09976** and
+**0.10058**, compared with generating truth **0.10**, after the search
+found its spatial address. No oracle support was provided to the search.
+
+A plausible interpretation is **persistent process excitation**:
+independent disturbances prevent the dynamics from falling rapidly into a
+smooth low-dimensional subspace in which different lag/shift combinations
+look equivalent. The two-seed result does **not** establish that causal
+mechanism. A frozen amplitude sweep with independent seeds is needed
+before drawing that conclusion. Further, the combined-noise trial
+is **not a replication of WAIVES** or its continuous SDE results; in our
+discrete autoregression IV can have greater variance than OLS.
+
+**Research status:** useful synthetic method; no novel theorem, no natural
+sensor validation, no claim to general nonlinear law discovery.
