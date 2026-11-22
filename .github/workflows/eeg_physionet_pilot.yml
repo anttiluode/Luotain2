@@ -1,0 +1,32 @@
+name: Public EEG observability pilot
+
+on:
+  push:
+    paths:
+      - 'scripts/eeg_physionet_pilot.py'
+      - 'tests/test_eeg_physionet_pilot.py'
+      - '.github/workflows/eeg_physionet_pilot.yml'
+  workflow_dispatch:
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy mne pytest
+      - name: Run EEG numerical and mixing-null controls
+        run: python -m pytest -q tests/test_eeg_physionet_pilot.py
+      - name: Download and analyze two public resting EEG baselines
+        run: >
+          python scripts/eeg_physionet_pilot.py
+          --subject 1 --out results/eeg_physionet_001.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eeg-observability-pilot
+          path: results/eeg_physionet_001.json
+          if-no-files-found: warn
