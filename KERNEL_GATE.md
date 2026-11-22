@@ -75,7 +75,7 @@ IV-006 used seeds 801–803; this gate used new seeds 901–903.
 
 The kernel was recovered blind, from noisy frames only, within about 0.08 of the truth in every one of the 27 non-null cases. That holds even for the camera model, whose true kernel varies with local brightness. With i.i.d. noise the off-zero values came out at zero.
 
-### The five misses
+### The four misses
 
 Each was off by one term, with nothing else wrong:
 
@@ -84,7 +84,7 @@ Each was off by one term, with nothing else wrong:
 - **camera Burgers 903:** one extra lag-2 product.
 - **gauss Allen–Cahn 902:** one extra u[t−2](0,+1).
 
-That is four misses. The fifth is not a miss: all 9 null worlds stayed empty.
+All 9 null worlds stayed empty.
 
 **Both lag swaps happened in the only two runs where the probe kernel failed the PSD check.** There the loop fell back to the round-1 echo, the start that development had shown to be the weak one. In the other 25 non-null runs the probe was valid; 24 of them were exact. This is an observation, not a rule added after the fact. It suggests the next improvement is a better probe (one that cannot be invalid), not a better echo.
 
