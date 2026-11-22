@@ -54,7 +54,7 @@ Receipts: [`results/r_gate_A.json`](results/r_gate_A.json), [`results/r_gate_B.j
 | | 8% | 0/3 | 1/3 | 3/3 | 2/3 | **0/3** |
 | null (false positives) | 4%, 8% | 0/6 | 0/6 | 0/6 | 0/6 | 0/6 |
 
-**The error is asymmetric, and the prediction had the wrong side.** Underestimating R costs a little, as predicted: all 10 underestimate failures are **one extra delayed copy** (lag 2 or 3) with nothing missing. Overestimating R is what collapses the search. At 8%, +10% already gives 0/3 on Allen–Cahn and Burgers, and +25% does the same everywhere. Those laws lose true stencil terms and fill up with delayed, cubed and product junk; one wormhole run picked offsets (±31, ±16). An over-corrected score subtracts too much noise from laws with large coefficients and many noisy inputs, so complex laws look better than they are. **Practical rule: if R is uncertain, err low.** Null worlds stayed empty at every f.
+**The error is asymmetric, and the prediction had the wrong side.** Underestimating R costs a little, as predicted: all 10 underestimate failures are **one extra delayed copy** (lag 2 or 3) with nothing missing. Overestimating R is what collapses the search. At 8%, +10% already gives 0/3 on Allen–Cahn and Burgers. +25% gives 0/3 for every world at 8%, and for Allen–Cahn already at 4%. Those laws lose true stencil terms and fill up with delayed, cubed and product junk; one wormhole run picked offsets (±31, ±16). An over-corrected score subtracts too much noise from laws with large coefficients and many noisy inputs, so complex laws look better than they are. **Practical rule: if R is uncertain, err low.** Null worlds stayed empty at every f.
 
 ### Part B — blind R from the noise echo (start R̂ = 0)
 
@@ -70,7 +70,7 @@ The blind loop **matched known R within one case**. Its two 8% failures repeat f
 - **Allen–Cahn seed 701** found exactly the same two extra delayed terms as with the true R.
 - **Wormhole seed 701** stopped at R̂ = 0.94·R and picked up one extra term, u[t−2](+1,+1). Part A's f = 0.9 run on the same seed picked up that same term.
 
-The first selection at R̂ = 0 always contained delayed copies (7–11 terms). Its echo still gave R̂/R of 0.65–0.97, enough for the next selection to find the true law in most cases. Null worlds: the law stays empty and R̂ stays undefined (reported as 0), which is the correct answer.
+The first selection at R̂ = 0 contained delayed copies in 17 of 18 non-null cases (7–11 terms). Its echo still gave R̂/R of 0.65–0.99, enough for the next selection to find the true law in most cases. Null worlds: the law stays empty and R̂ stays undefined (reported as 0), which is the correct answer.
 
 ### Part C — weak excitation, known R, 4% sensor noise
 
