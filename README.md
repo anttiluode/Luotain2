@@ -20,6 +20,14 @@ This is a discrete-time IV-inspired diagnostic, **not WAIVES's continuous-time S
 
 **First measured gate:** with the correct terms supplied, disjoint-time IV improved coefficient recovery in **29/35** original 1%-sensor-noise cases, reducing mean coefficient L2 from **0.012582** (matched OLS) to **0.000358**. But with **2% process + 1% sensor noise**, IV won only **8/15** and had **worse** mean error (**0.016027** versus OLS **0.004766**). One wave trial was badly unstable. The [full workflow and downloadable JSON receipts](https://github.com/anttiluode/Luotain2/actions/runs/45019269055) are preserved. This is a positive coefficient-estimation control with a real negative result, **not** a solved 0/35 blind-discovery benchmark. Passing this test would justify—not prove—a later open-grammar IV proposal/validation experiment. The `tests/test_iv.py` suite includes a noisy autoregression recovery, polynomial corrected-score checks, instrument time-separation and an explicit rank-deficiency refusal.
 
+## November 22 — Gate IV-002: blind linear-law support search
+
+[**Read Gate IV-002 methods, controls and independent evaluation protocol**](IV_BLIND_GATE.md) · [Blind selector](luotain2/blind_iv.py) · [Benchmark script](scripts/run_blind_iv_gate.py).
+
+This separate, experimental branch now proposes **unknown linear shift terms** using Luotain2's FFT residual search, fits candidates with time-disjoint IV, and selects supports using a sensor-noise-corrected validation loss. The true term list and coefficients are hidden until scoring. Nonlinear terms are **out of scope**. A conventional local four-neighbor stencil is explicitly offered as a challenger; its success must not be confused with open nonlocal discovery.
+
+**Development pilot:** first blind search recovered **1/4** exact (only null). After revising local candidate groups, exchange moves and sparsity penalty using the same seed, the revised search recovered **3/4** (heat, drift and null; wormhole missed). The pilot is *development data*, not independent evidence. A frozen-parameter [GitHub workflow](.github/workflows/blind_iv.yml) tests 35 fresh-seed cases (30 non-null linear and five null) plus ten combined-noise stress cases; it is not identical to the original 35-case **non-null and partly nonlinear** Luotain2 benchmark.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.
