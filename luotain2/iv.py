@@ -33,7 +33,13 @@ class IVEstimate:
 
 
 def _value(frames, t, term, sensor_var):
-    """Evaluate one existing Luotain2 grammar term with Gaussian debiasing."""
+    """Evaluate one existing Luotain2 grammar term with Gaussian debiasing.
+
+    sensor_var may also be a noise kernel {offset: covariance} (noise_kernel.py)
+    for spatially correlated sensor noise; then the Wick product is used."""
+    if isinstance(sensor_var, dict):
+        from .noise_kernel import feature_value
+        return feature_value(frames, t, term, sensor_var)
     kind = term[0]
     if kind == "shift":
         _, f, lag, dy, dx = term
@@ -79,7 +85,7 @@ def moment_matrices(frames, terms, *, sensor_var=0.0, window=1,
         raise ValueError("dynamics terms must use time lag >= 1")
     if not (window >= 1 and gap >= 0 and pixel_stride >= 1):
         raise ValueError("window and pixel_stride >=1, gap >=0")
-    if sensor_var < 0 or not np.isfinite(sensor_var):
+    if not isinstance(sensor_var, dict) and (sensor_var < 0 or not np.isfinite(sensor_var)):
         raise ValueError("sensor_var must be finite and nonnegative")
     lag_max = max(_lag(t) for t in terms)
     # For W equations the regressor observation times run from t-lag_max
