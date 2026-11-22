@@ -32,28 +32,38 @@ def score_clean(terms, coefficients, clean):
 
 def run(worlds=DEFAULT_WORLDS, seeds=(101, 102, 103, 104, 105),
         window=1, gap=0, max_condition=1e9, n=64, T=40,
-        measurement_ratio=.01, kind="measurement"):
+        measurement_ratio=.01, kind="measurement", process_ratio=.02):
     results = []
     for world in worlds:
         for seed in seeds:
-            raw, truth = make_world(world, seed=seed, n=n, T=T,
-                                    noise=measurement_ratio if kind == "measurement" else .02,
-                                    kind=kind)
+            if kind == "combined":
+                raw, truth = make_world(world, seed=seed, n=n, T=T,
+                                        noise=process_ratio, kind="process")
+                # Independent sensor-only corruption is now added *after*
+                # the process-noise-driven state trajectory is complete.
+                latent = raw[0]
+                noise_rng = np.random.default_rng(seed + 700000)
+                observed = latent + (measurement_ratio * latent.std()) * noise_rng.standard_normal(latent.shape)
+            else:
+                raw, truth = make_world(world, seed=seed, n=n, T=T,
+                                        noise=measurement_ratio if kind == "measurement" else process_ratio,
+                                        kind=kind)
+                observed = raw[0]
             terms = list(truth)
             if not terms:
                 results.append({"world": world, "seed": seed,
                                 "status": "null: no oracle nonzero law"})
                 continue
-            observed = raw[0]
             # KNOWN corruption-level calibration from the benchmark design.
             # Do not pretend this is estimated from a continuous-SDE variogram.
-            sensor_variance = float((measurement_ratio * observed.std())**2) if kind == "measurement" else 0.0
+            sensor_variance = float((measurement_ratio * observed.std())**2) if kind in ("measurement", "combined") else 0.0
             fitted = estimate(observed, terms, sensor_var=sensor_variance,
                               window=window, gap=gap, max_condition=max_condition)
             quality = coefficient_error(fitted, terms, truth)
             # Independently simulated clean test trajectory, never used in the fit.
             clean = make_world(world, seed=seed + 10000, n=n, T=T,
-                               noise=0.0, kind="measurement")[0][2]
+                               noise=process_ratio if kind == "combined" else 0.0,
+                               kind="process" if kind == "combined" else "measurement")[0][2]
             quality["world"] = world
             quality["seed"] = seed
             quality["oracle_support"] = True
@@ -77,9 +87,10 @@ def run(worlds=DEFAULT_WORLDS, seeds=(101, 102, 103, 104, 105),
         "model": "discrete-time spatial autoregression, not WAIVES continuous SDE",
         "kind": kind,
         "measurement_ratio": measurement_ratio,
+        "process_ratio": (process_ratio if kind == "combined" else 0.0),
         "window": window,
         "gap": gap,
-        "conditions": {"n": n, "T": T, "noise_variance": "known 1% ratio times observed trajectory std^2"},
+        "conditions": {"n": n, "T": T, "noise_variance": "known 1% ratio times observed trajectory std^2" if kind in ("measurement", "combined") else "none"},
         "attempted": len(attempted),
         "identified": len(good),
         "refused": len(attempted)-len(good),
@@ -107,10 +118,13 @@ def main():
     ap.add_argument("--n", type=int, default=64)
     ap.add_argument("--T", type=int, default=40)
     ap.add_argument("--max-condition", type=float, default=1e9)
+    ap.add_argument("--kind", choices=("measurement", "process", "combined"), default="measurement")
+    ap.add_argument("--measurement-ratio", type=float, default=.01)
+    ap.add_argument("--process-ratio", type=float, default=.02)
     ap.add_argument("--out", default="results/iv_gate.json")
     args = ap.parse_args()
     out = run(args.worlds, args.seeds, args.window, args.gap, args.max_condition,
-              args.n, args.T)
+              args.n, args.T, args.measurement_ratio, args.kind, args.process_ratio)
     print(json.dumps(out["summary"], indent=2))
     if args.out:
         path = Path(args.out)
