@@ -55,6 +55,11 @@ def _value(frames, t, term, sensor_var):
     raise ValueError(term)
 
 
+def _lag(term):
+    """Grammar: shift uses index 2; product uses index 1."""
+    return int(term[2] if term[0] == "shift" else term[1])
+
+
 def moment_matrices(frames, terms, *, sensor_var=0.0, window=1,
                     gap=0, pixel_stride=1, step=None):
     """Construct A, Z, b from distinct time samples.
@@ -70,13 +75,13 @@ def moment_matrices(frames, terms, *, sensor_var=0.0, window=1,
         raise ValueError("frames must have shape (time,height,width)")
     if not terms:
         raise ValueError("pass a nonempty, known candidate support")
-    if any(t[0] not in ("shift", "prod") or int(t[2]) < 1 for t in terms):
+    if any(t[0] not in ("shift", "prod") or _lag(t) < 1 for t in terms):
         raise ValueError("dynamics terms must use time lag >= 1")
     if not (window >= 1 and gap >= 0 and pixel_stride >= 1):
         raise ValueError("window and pixel_stride >=1, gap >=0")
     if sensor_var < 0 or not np.isfinite(sensor_var):
         raise ValueError("sensor_var must be finite and nonnegative")
-    lag_max = max(int(t[2]) for t in terms)
+    lag_max = max(_lag(t) for t in terms)
     # For W equations the regressor observation times run from t-lag_max
     # to t+W-2. The latest instrument observation is t+W-2-shift;
     # shift=max_lag+W-1+gap makes it strictly earlier than t-lag_max.
