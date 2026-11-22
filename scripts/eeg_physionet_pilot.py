@@ -126,7 +126,7 @@ def main():
     args=ap.parse_args()
     import mne
     from mne.datasets import eegbci
-    files=eegbci.load_data(args.subject,[1,2],verbose=False)
+    files=eegbci.load_data(args.subject,[1,2],update_path=False,verbose=False)
     records={}
     for condition,filename in zip(["eyes_open","eyes_closed"],files):
         raw=mne.io.read_raw_edf(filename,preload=True,verbose=False)
