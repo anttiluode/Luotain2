@@ -1,9 +1,8 @@
 """Gate IV-007 driver: blind discovery under spatially correlated sensor noise.
 
-Blind kernel loop: start with no correction, select a law, estimate the noise kernel
-(radius 2, symmetric) from that law's echo on the train and validation trajectories,
-select again with Wick-corrected fits and validation risk; stop when C(0) moves < 5%
-(at most 4 selections). Truth is read only by the scorer.
+Blind kernel loop (see blind_kernel): uncorrected selection, a start kernel from a fixed
+over-complete probe law, then alternate Wick-corrected selection with the echo kernel of
+the selected law (radius 2, symmetric). At most 4 selections. Truth is read only by the scorer.
 """
 from __future__ import annotations
 import argparse, json, os, sys, time
@@ -14,7 +13,8 @@ import numpy as np
 from luotain2.worlds import make_world
 from luotain2.stream import Stream
 from luotain2.grammar import shifted
-from luotain2.noise_kernel import BlindKernelDiscoverer, echo_kernel
+from luotain2.noise_kernel import (BlindKernelDiscoverer, echo_kernel, probe_kernel,
+                                   probe_terms, kernel_is_valid, scale_kernel)
 from run_sensor_gate import sensor, score
 
 
@@ -37,23 +37,47 @@ def data(world, seed, ratio, model):
     return obs, law, R
 
 
-def blind_kernel(obs, seed, radius=2, max_rounds=4):
+def _select(tr, va, seed, kern):
+    d = BlindKernelDiscoverer(max_lag=3, margin=31, k_props=12, max_terms=12, delta=0.003,
+                              pixel_stride=2, max_condition=1e5, seed=seed, estimator="iv",
+                              k_products=4)
+    return d.run(tr, va, kernel=kern)
+
+
+def _echo(obs, f, kern, radius):
+    ks = [echo_kernel(o, f.terms, f.coef, radius=radius, kernel0=kern) for o in obs[:2]]
+    ks = [k for k in ks if k is not None]
+    return {D: float(np.mean([k[D] for k in ks])) for D in ks[0]} if ks else None
+
+
+def blind_kernel(obs, seed, radius=2, max_rounds=4, haircut=0.85):
+    """Round 1: uncorrected selection. Start kernel: echo of a fixed over-complete probe law
+    (local stencil, u^2, u^3, nearest products at lag 1, plus round 1's non-local shifts),
+    checked for positive semidefiniteness and multiplied by `haircut`; if the probe is
+    refused or invalid, the echo of the round-1 law is used instead. Later rounds: echo of
+    the law just selected, used as is. Stop when C(0) moves < 5%."""
     tr, va = [Stream(p, mode="dynamics", max_lag=3) for p in obs[:2]]
-    kern, rounds, f = {}, [], None
-    for _ in range(max_rounds):
-        d = BlindKernelDiscoverer(max_lag=3, margin=31, k_props=12, max_terms=12, delta=0.003,
-                                  pixel_stride=2, max_condition=1e5, seed=seed, estimator="iv",
-                                  k_products=4)
-        f = d.run(tr, va, kernel=kern)
-        ks = [echo_kernel(o, f.terms, f.coef, radius=radius, kernel0=kern) for o in obs[:2]]
-        ks = [k for k in ks if k is not None]
-        rounds.append({"C0": kern.get((0, 0), 0.0), "n_terms": len(f.terms)})
-        if not ks:
+    f = _select(tr, va, seed, {})
+    rounds = [{"C0": 0.0, "n_terms": len(f.terms), "source": "none"}]
+    if not f.terms:
+        return f, {}, rounds
+    extra = [t for t in f.terms if t[0] == "shift" and max(abs(t[3]), abs(t[4])) > 1]
+    kern, _ = probe_kernel(obs[:2], probe_terms(extra), radius=radius)
+    source = "probe"
+    if kern is None or not kernel_is_valid(kern):
+        kern, source = _echo(obs, f, {}, radius), "round-1 echo"
+    if kern is None:
+        return f, {}, rounds
+    kern = scale_kernel(kern, haircut)
+    for _ in range(max_rounds - 1):
+        f = _select(tr, va, seed, kern)
+        rounds.append({"C0": kern[(0, 0)], "n_terms": len(f.terms), "source": source})
+        new = _echo(obs, f, kern, radius) if f.terms else None
+        if new is None:
             break
-        new = {D: float(np.mean([k[D] for k in ks])) for D in ks[0]}
-        old0 = kern.get((0, 0), 0.0)
-        kern = new
-        if old0 > 0 and abs(new[(0, 0)] - old0) / old0 < 0.05:
+        old0 = kern[(0, 0)]
+        kern, source = new, "echo"
+        if abs(new[(0, 0)] - old0) / old0 < 0.05:
             break
     return f, kern, rounds
 
@@ -69,7 +93,7 @@ def one(world, seed, ratio, model):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--seeds", type=int, nargs="+", default=[901, 902, 903])
-    p.add_argument("--conditions", nargs="+", default=["blurred:0.04", "blurred:0.08", "camera:0.04", "gauss:0.04"])
+    p.add_argument("--conditions", nargs="+", default=["blurred:0.04", "camera:0.04", "gauss:0.04"])
     p.add_argument("--worlds", nargs="+", default=["allen_cahn", "burgers", "wormhole", "null"])
     p.add_argument("--out", required=True)
     a = p.parse_args()

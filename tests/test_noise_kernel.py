@@ -52,3 +52,30 @@ def test_kernel_value_symmetry_and_time():
     k = {(0, 0): 1.0, (0, 1): 0.5}
     assert kernel_value(k, (1, 3, 3), (1, 3, 4)) == 0.5 == kernel_value(k, (1, 3, 4), (1, 3, 3))
     assert kernel_value(k, (1, 3, 3), (2, 3, 4)) == 0.0
+
+
+def test_echo_kernel_two_lag_law_needs_cross_lag_term():
+    """Two-lag linear law: the law's own lag-1 and lag-2 terms meet across time.
+    With the full echo formula the box-blur kernel is recovered from the true law."""
+    from luotain2.grammar import shifted
+    from luotain2.noise_kernel import echo_kernel
+    rng = np.random.default_rng(5)
+    n, T = 64, 120
+    X = [rng.standard_normal((n, n)), rng.standard_normal((n, n))]
+    for _ in range(T - 2):
+        X.append(0.55 * X[-1] + 0.4 * shifted(X[-2], 1, 0) + rng.standard_normal((n, n)))
+    X = np.array(X)
+    nrng = np.random.default_rng(777)
+    sd = 0.5
+    Y = []
+    for x in X:
+        w = nrng.standard_normal((n, n))
+        b = sum(shifted(w, dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1)) / 3.0
+        Y.append(x + sd * b)
+    Y = np.array(Y)
+    terms = [("shift", "id", 1, 0, 0), ("shift", "id", 2, 1, 0)]
+    coef = np.array([0.0, 0.55, 0.4])
+    k = echo_kernel(Y, terms, coef, radius=2, iters=1)
+    R = sd * sd
+    for D, want in [((0, 0), 1.0), ((0, 1), 6 / 9), ((1, 1), 4 / 9), ((0, 2), 3 / 9)]:
+        assert abs(k[D] / R - want) < 0.07, (D, k[D] / R, want)

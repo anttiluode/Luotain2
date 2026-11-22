@@ -20,10 +20,14 @@ The i.i.d. case is C(0) = R, C(D != 0) = 0.
 2. Kernel echo. Stein's lemma in several variables, E[eta_a f] = sum_b C_ab E[df/dY_b],
    turns the IV-005 echo into a deconvolution. For the TRUE law,
 
-       cov( r_s(x + o), r_{s+L}(x) ) = - sum_o' d_L(o') C(o - o'),
+       cov( r_s(x + o), r_{s+L}(x) ) = - sum_o' d_L(o') C(o - o')
+                                       + sum_{Lk = L + Lj} d_Lj(o_j) d_Lk(o_k) C(o + o_j - o_k),
 
    where d_L(o') is the mean gradient of the (Wick-debiased) prediction with
-   respect to Y_s(x + o'). Measured for many o, this is a linear system for
+   respect to Y_{s}(x + o') at lag L. The second sum (the law's own terms
+   meeting each other across time) is zero for single-lag laws and exact for
+   linear ones; for nonlinear laws it is the first-order (mean-gradient)
+   approximation. Measured for many o, this is a linear system for
    the kernel values on a small symmetric support; it is solved by least
    squares and iterated (the debiased gradients depend on C).
 """
@@ -179,14 +183,20 @@ def echo_kernel(frames, terms, coef, radius=1, kernel0=None, iters=3, window=Non
                     if not cs:
                         continue
                     row = np.zeros(len(sup))
-                    for (vl, vy, vx), dv in d.items():
-                        if vl != lag:
-                            continue
-                        D = (oy - vy, ox - vx)
+
+                    def add(D, w):
                         if D < (0, 0):
                             D = (-D[0], -D[1])
                         if D in sup:
-                            row[sup.index(D)] += -dv
+                            row[sup.index(D)] += w
+
+                    for (vl, vy, vx), dv in d.items():
+                        if vl == lag:                      # +eta_s(x+o) meets -d eta_s inside r_{s+L}(x)
+                            add((oy - vy, ox - vx), -dv)
+                    for (jl, jy, jx), dj in d.items():     # -d_j eta_{s-Lj}(x+o+o_j) inside r_s
+                        for (kl, ky, kx), dk in d.items():  # meets -d_k eta_{s+L-Lk}(x+o_k): Lk = L + Lj
+                            if kl == lag + jl:
+                                add((oy + jy - ky, ox + jx - kx), dj * dk)
                     if np.any(row):
                         rows.append(row)
                         rhs.append(float(np.mean(cs)))
@@ -237,3 +247,57 @@ class BlindKernelDiscoverer(BlindPolyDiscoverer):
         self.kernel = dict(kernel)
         self.R = self.kernel.get((0, 0), 0.0)
         return BlindIVDiscoverer.run(self, train, val, sensor_variance=self.R, verbose=verbose)
+
+
+# ------------------------------------------------------------------ probe-law kernel
+def probe_terms(extra=(), lags=(1, 2), half=1):
+    """A deliberately over-complete local law: every shift within `half` at each lag,
+    u^2, u^3 and the four nearest-neighbour products at lag 1, plus any `extra` terms (e.g. a first selection's non-local links)."""
+    ts = [("shift", "id", L, dy, dx) for L in lags
+          for dy in range(-half, half + 1) for dx in range(-half, half + 1)]
+    ts += [("shift", "sq", 1, 0, 0), ("shift", "cube", 1, 0, 0)]
+    for n in ((1, 0), (-1, 0), (0, 1), (0, -1)):           # nearest-neighbour products
+        a, b = sorted([(0, 0), n])
+        ts.append(("prod", 1, a[0], a[1], b[0], b[1]))
+    for t in extra:
+        if t not in ts:
+            ts.append(t)
+    return ts
+
+
+def probe_kernel(frames_list, terms, radius=2, iters=3, pixel_stride=2, max_condition=1e8):
+    """Noise kernel from the echo of a FIXED over-complete law, IV-fitted on frames_list[0].
+
+    No selection happens inside, so there is no discrete basin to get stuck in: the
+    loop only alternates the law's coefficients (Wick-debiased IV) with the kernel.
+    IV coefficients do not need the kernel for linear terms because the instruments
+    are older frames and the noise is white in time; the kernel only debiases the
+    nonlinear terms. Returns (kernel, coef) or (None, None) if IV refuses."""
+    from .iv import estimate
+    kern = {}
+    coef = None
+    for _ in range(iters):
+        z = estimate(np.asarray(frames_list[0], dtype=np.float64), terms, sensor_var=kern,
+                     window=1, gap=0, pixel_stride=pixel_stride, max_condition=max_condition)
+        if not z.identified or not np.all(np.isfinite(z.coef)):
+            return None, None
+        coef = z.coef
+        ks = [echo_kernel(f, terms, coef, radius=radius, kernel0=kern, iters=1) for f in frames_list]
+        ks = [k for k in ks if k is not None]
+        if not ks:
+            return None, None
+        kern = {D: float(np.mean([k[D] for k in ks])) for D in ks[0]}
+    return kern, coef
+
+
+def kernel_is_valid(kernel, size=7, tol=0.05):
+    """A covariance kernel must give a positive semidefinite matrix on any patch."""
+    if not kernel or kernel.get((0, 0), 0.0) <= 0:
+        return False
+    idx = [(y, x) for y in range(size) for x in range(size)]
+    M = np.array([[kernel_value(kernel, (0,) + a, (0,) + b) for b in idx] for a in idx])
+    return bool(np.linalg.eigvalsh(M).min() >= -tol * kernel[(0, 0)])
+
+
+def scale_kernel(kernel, h):
+    return {D: h * v for D, v in kernel.items()}
