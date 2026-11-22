@@ -25,7 +25,7 @@ DEFAULT_WORLDS = [x for x in WORLDS + STRESS if x != "null"]
 
 
 def score_clean(terms, coefficients, clean):
-    max_lag = max(t[2] for t in terms)
+    max_lag = max(t[2] if t[0] == "shift" else t[1] for t in terms)
     stream = Stream(clean, mode="dynamics", max_lag=max_lag)
     return nmse(stream.y, stream.design(terms) @ coefficients)
 
