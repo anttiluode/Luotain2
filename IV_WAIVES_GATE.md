@@ -104,17 +104,58 @@ blind noise-variance estimate.
     python scripts/run_iv_gate.py --worlds heat diagonal wave wormhole allen_cahn burgers drift --seeds 101 102 103 --out results/iv_gate.json
 
 The new CI workflow [iv_gate.yml](.github/workflows/iv_gate.yml) runs
-the above 21 comparison trials on the original 1% observation-noise
-generator and uploads the JSON result as a workflow artifact. The gate
-reports OLS/IV coefficient distance from the **supplied** true law and
-prediction on a separately simulated **clean** synthetic trajectory.
-That clean trajectory is used only for evaluation, never training.
+**all 35 original non-null 1% measurement-noise cases** plus a separate
+**15-trial joint-process-plus-sensor-noise control**. It uploads both JSON
+receipts as a [GitHub Actions artifact](https://github.com/anttiluode/Luotain2/actions/runs/45019269055/artifacts/14753420249).
+The gate reports OLS/IV coefficient distance from the **supplied**
+true law and prediction on a separately simulated **clean** synthetic
+trajectory (or process-noise-driven latent trajectory for the combined
+test). This evaluator data is never used in fitting. Neither run
+counts as exact discovery, because the true support is supplied.
 
-The 1% baseline in RESULTS.md has 35 non-null cases (seven worlds × five
-seeds), while the initial CI diagnostic uses only 21 of these. Run the
-script with all five seeds for the full coefficient-estimation audit.
-Neither run can count as an exact discovery because the support was
-supplied.
+## November 22 results — a positive control AND a failed extrapolation
+
+[Successful 35+15 trial workflow](https://github.com/anttiluode/Luotain2/actions/runs/45019269055) · [Two machine-readable JSON receipts (downloadable artifact)](https://github.com/anttiluode/Luotain2/actions/runs/45019269055/artifacts/14753420249).
+
+Each estimator receives the same **known true term list** and the same noisy
+training trajectory. Its coefficients are compared to the synthetic law,
+then tested on separately simulated data. The unknown-term search has
+**not** been rerun with IV.
+
+| Controlled setting | IV wins coefficient L2 | OLS mean coefficient L2 | IV mean coefficient L2 | IV clean-test NMSE wins |
+|---|---:|---:|---:|---:|
+| 1% independent measurement noise (7 worlds × 5 seeds) | **29/35** | 0.0125823 | **0.0003582** | **31/35** |
+| 2% process noise + 1% measurement noise (5 worlds × 3 seeds) | 8/15 | **0.0047658** | 0.0160273 | 9/15 |
+
+No instrument matrix triggered the current numerical refusal threshold in
+these samples; that does **not** establish instrument relevance
+statistically. In particular, the combined-noise wave seed 103 yields
+IV coefficient L2 **0.19158** versus OLS **0.00883** while its cross-moment
+condition number is about **1.84×10⁵**. The existing 1e9 condition cutoff
+is demonstrably not an adequate reliability alarm.
+
+This pattern has a straightforward interpretation:
+
+* **Measurement-only:** OLS is biased by errors in its lagged inputs;
+  disjoint-time IV often removes that attenuation even from mixed
+  nonlinear/spatial candidate families when their **correct support is
+  supplied**. Average error improves by roughly 35× in this setting.
+* **Both process and measurement noise:** the properly specified discrete
+  autoregressive equation already has an innovation independent of its
+  historical inputs, so OLS does *not* have WAIVES's weak-form
+  process-noise endogeneity. IV can be more variable, especially with
+  noisy wave modes and weak historical correlation. The mean coefficient
+  error is about 3.4× **worse** than OLS, dominated partly by a large wave
+  outlier. This is a falsification of any claim that this crude discrete
+  IV is universally better, **not** a falsification of WAIVES's theorems.
+
+**Decision:** retain the IV estimator as an independent experimental
+measurement and DO NOT promote it to Luotain2's open-grammar discovery
+algorithm yet. A next diagnostic must quantify instrument strength
+and cross-gap/depth agreement without tuning on the final test law.
+Subsequent blind law-search trials must include the original 35-case
+measurement benchmark, null worlds, long-range wormholes, lag-three
+echoes, and the combined-noise failures in their denominator.
 
 ## Stop signs and promotion criteria
 
