@@ -1,0 +1,119 @@
+{
+  "title": "Luotain2 Gate IV-002 frozen blind support discovery",
+  "date": "2026-11-22",
+  "repository": "https://github.com/anttiluode/Luotain2",
+  "run": "https://github.com/anttiluode/Luotain2/actions/runs/45019980713",
+  "artifact": "https://github.com/anttiluode/Luotain2/actions/runs/45019980713/artifacts/14753466816",
+  "model": "Discrete-time linear shift terms; original FFT proposal plus declared local stencil challenger; disjoint-time IV fit; known 1% sensor noise; corrected held-out risk; no oracle terms",
+  "controls": {
+    "training": "independent noisy trajectory",
+    "validation": "independent noisy trajectory",
+    "test": "independent noisy trajectory; true term support shown only after prediction",
+    "development_seed": 101,
+    "fresh_seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "frozen_settings": {
+      "n": 64,
+      "T": 40,
+      "max_terms": 12,
+      "k_props": 12,
+      "max_lag": 3,
+      "margin": 31,
+      "pixel_stride": 2,
+      "complexity_penalty": 0.000002
+    }
+  },
+  "pilot": {
+    "fft_only_exact": 1,
+    "total": 4,
+    "revised_exact": 3,
+    "total_revised": 4,
+    "note": "Development data; tuning happened between pilots"
+  },
+  "fresh_measurement": {
+    "noise_measurement": 0.01,
+    "noise_process": 0,
+    "worlds": {
+      "heat": [
+        5,
+        5
+      ],
+      "diagonal": [
+        0,
+        5
+      ],
+      "drift": [
+        5,
+        5
+      ],
+      "wave": [
+        5,
+        5
+      ],
+      "wormhole": [
+        0,
+        5
+      ],
+      "echo": [
+        5,
+        5
+      ],
+      "null": [
+        5,
+        5
+      ]
+    },
+    "non_null_exact": 20,
+    "non_null_total": 30,
+    "null_correct": 5,
+    "null_total": 5,
+    "overall_exact": 25,
+    "overall_total": 35
+  },
+  "combined": {
+    "noise_measurement": 0.01,
+    "noise_process": 0.02,
+    "worlds": {
+      "heat": [
+        2,
+        2
+      ],
+      "wave": [
+        1,
+        2
+      ],
+      "wormhole": [
+        2,
+        2
+      ],
+      "echo": [
+        2,
+        2
+      ],
+      "null": [
+        2,
+        2
+      ]
+    },
+    "overall_exact": 9,
+    "overall_total": 10
+  },
+  "failure_examples": {
+    "wormhole_measurement": "Across 5 seeds recovered around +1.77 u[t-1] -0.79 u[t-2] + small false lag-two shift, omitted true remote (+17,-9)",
+    "diagonal_measurement": "Across 5 seeds selected lag-two oblique substitutes and omitted true cardinal neighbors",
+    "combined_wave_extra_term": "One of two tests selected a spurious lag-one diagonal shift"
+  },
+  "limitations": [
+    "Known 1% sensor noise level supplied; not fully blind to sensor model",
+    "Only linear shift family; nonlinear original Luotain2 worlds excluded",
+    "Local four-neighbor proposals given explicitly, weakening novelty claim on local worlds",
+    "Original 35 non-null benchmark not directly comparable",
+    "All fields from same synthetic generator; no real sensor evaluation",
+    "Process excitation hypothesis not yet causal confirmation"
+  ]
+}
