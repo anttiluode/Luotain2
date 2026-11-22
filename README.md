@@ -10,6 +10,14 @@ and it checks that rule on data the rule never saw. No labels and no neural netw
 
 **Site:** [anttiluode.github.io/luotain2](https://anttiluode.github.io/luotain2/) (built from `index.html`; turn on GitHub Pages for `main` / root).
 
+## November 22, 2026 — measurement-noise IV experiment (not yet a discovered law)
+
+[**IV Gate 001: read the experiment and its stop conditions**](IV_WAIVES_GATE.md) · [IV estimator](luotain2/iv.py) · [Original-world benchmark script](scripts/run_iv_gate.py).
+
+The uploaded WAIVES manuscript (Ruzayqat, Bortz and Dukić, 2026, arXiv:2611.23951v2) inspired a **disjoint-time instrumental-variable coefficient estimator**. The original residue-guided discoverer and its 1% measurement-noise failure are unchanged. The new method first receives the **known correct list of terms**, estimates its coefficients from noisy observations and compares against matched OLS on a separately generated clean synthetic test trajectory. An ill-conditioned instrument matrix returns **not identified**, never an invented success.
+
+This is a discrete-time IV-inspired diagnostic, **not WAIVES's continuous-time SDE weak form**, not SPDE theory, not a new blind noise-variance estimator, and **not yet recovery of the unknown law**. Passing this test would justify—not prove—a later open-grammar IV proposal/validation experiment. The `tests/test_iv.py` suite includes a noisy autoregression recovery, polynomial corrected-score checks, instrument time-separation and an explicit rank-deficiency refusal.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.
