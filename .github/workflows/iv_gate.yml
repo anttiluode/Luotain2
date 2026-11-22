@@ -19,16 +19,26 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install numpy scipy pytest
-      - name: Check 1% observation-noise coefficient recovery on original worlds
+      - name: Check all 35 original measurement-noise known-support cases
         run: >
           python scripts/run_iv_gate.py
           --worlds heat diagonal wave wormhole allen_cahn burgers drift
-          --seeds 101 102 103
+          --seeds 101 102 103 104 105
           --window 1 --gap 0 --n 64 --T 40
           --out results/iv_gate.json
+      - name: Check simultaneous process and sensor noise (15 cases)
+        run: >
+          python scripts/run_iv_gate.py
+          --worlds heat wave wormhole allen_cahn burgers
+          --seeds 101 102 103
+          --kind combined
+          --window 1 --gap 0 --n 64 --T 40
+          --out results/iv_gate_combined.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: iv-gate-oracle-support
-          path: results/iv_gate.json
+          path: |
+            results/iv_gate.json
+            results/iv_gate_combined.json
           if-no-files-found: warn
