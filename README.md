@@ -58,6 +58,16 @@ The sensor variance can now be found **blind** from the law's own **noise echo**
 
 The miscalibration sweep is asymmetric. **Underestimating R adds at most one delayed term; overestimating it by 10% collapses the nonlinear searches at 8% noise.** At weak excitation, IV did **worse** than OLS on Burgers (0/3 vs 3/3 with no process noise), and Allen–Cahn failed for both. Both are dark directions in the passive data, not estimator bugs.
 
+## November 22 — Gate IV-006: toward real sensors
+
+[**Frozen method and results**](SENSOR_GATE.md) · [driver](scripts/run_sensor_gate.py).
+
+Three questions on new seeds, 105 cases:
+
+- **IV or OLS?** Choosing by corrected validation risk gave 15/21 exact laws, against 12/21 for IV always, 14/21 for OLS always, and 17/21 for an oracle. Both of its misses are on Burgers with no process noise, where the wrong lag predicts as well as the right one.
+- **Haircut h = 0.9 on R̂:** no cost at 4% noise (12/12). At 8% it gave 9/12, each miss one extra delayed term. No echo overshot in any run.
+- **Sensor noise models:** quantized, Poisson-like and Student-t noise gave **9/9 exact** each, the same as Gaussian. **Spatially blurred noise gave 0/9.** Wormhole swapped its stencil for lag-2 diagonals every time. The method gives a confident wrong law instead of refusing. This is the wall for real cameras, which Gate IV-007 targets.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.

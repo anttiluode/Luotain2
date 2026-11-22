@@ -1,0 +1,1792 @@
+{
+ "part": "C",
+ "seeds": [
+  801,
+  802,
+  803
+ ],
+ "rows": [
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 801,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.981511335333776,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0009007001296419603,
+     "used": 0.0009007001296419603,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0009771276759045198,
+     "used": 0.0009771276759045198,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000032 +0.590537*u[t-1] +0.151593*u[t-1](+1,+0) +0.151580*u[t-1](-1,+0) +0.155030*u[t-1](+0,+1) +0.154843*u[t-1](+0,-1) -0.203842*u[t-1]^3",
+   "seconds": 67.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 802,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9433506257869988,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0009446449131198791,
+     "used": 0.0009446449131198791,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000214 +0.591375*u[t-1] +0.153006*u[t-1](+1,+0) +0.152490*u[t-1](-1,+0) +0.153318*u[t-1](+0,+1) +0.153883*u[t-1](+0,-1) -0.203846*u[t-1]^3",
+   "seconds": 42.6
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 803,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9642583334788338,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0009770790708934869,
+     "used": 0.0009770790708934869,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000223 +0.602960*u[t-1] +0.149327*u[t-1](+1,+0) +0.148309*u[t-1](-1,+0) +0.148937*u[t-1](+0,+1) +0.148340*u[t-1](+0,-1) -0.197859*u[t-1]^3",
+   "seconds": 43.1
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 801,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9680114038370283,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00012491380988594584,
+     "used": 0.00012491380988594584,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000012 +0.201436*u[t-1](+1,+0) +0.200824*u[t-1](-1,+0) +0.204929*u[t-1](+0,+1) +0.204791*u[t-1](+0,-1) +0.188109*u[t-1] +0.126419*u[t-1](+0,-1)*u[t-1] -0.127429*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 65.7
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 802,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9832199715937675,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 11
+    },
+    {
+     "R_hat": 9.286113123147995e-05,
+     "used": 9.286113123147995e-05,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0001260297681340688,
+     "used": 0.0001260297681340688,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000011 +0.201574*u[t-1](+1,+0) +0.200803*u[t-1](-1,+0) +0.202289*u[t-1](+0,+1) +0.202116*u[t-1](+0,-1) +0.193672*u[t-1] -0.126660*u[t-1]*u[t-1](+0,+1) +0.127529*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 114.9
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 803,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.0079918753454484,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0001354574450820747,
+     "used": 0.0001354574450820747,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000104 +0.201699*u[t-1](+1,+0) +0.199974*u[t-1](-1,+0) +0.202098*u[t-1](+0,+1) +0.200913*u[t-1](+0,-1) +0.195444*u[t-1] +0.125504*u[t-1](+0,-1)*u[t-1] -0.125379*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 66.8
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 801,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9681449468216415,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0002820188723584255,
+     "used": 0.0002820188723584255,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003191720752095292,
+     "used": 0.0003191720752095292,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000200 +0.486529*u[t-1] +0.099962*u[t-1](+17,-9) +0.101810*u[t-1](+1,+0) +0.100795*u[t-1](-1,+0) +0.105893*u[t-1](+0,+1) +0.105282*u[t-1](+0,-1)",
+   "seconds": 49.7
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 802,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9891721428073608,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0002772533032077053,
+     "used": 0.0002772533032077053,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.00032145184762371985,
+     "used": 0.00032145184762371985,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000092 +0.098831*u[t-1](+1,+0) +0.098735*u[t-1](-1,+0) +0.100257*u[t-1](+0,+1) +0.099564*u[t-1](+0,-1) +0.100292*u[t-1](+17,-9) +0.502172*u[t-1]",
+   "seconds": 65.0
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 803,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9967079796768699,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.00031565047072233795,
+     "used": 0.00031565047072233795,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003724706459385735,
+     "used": 0.0003724706459385735,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000145 +0.491647*u[t-1] +0.099837*u[t-1](+17,-9) +0.101246*u[t-1](+1,+0) +0.099390*u[t-1](-1,+0) +0.104556*u[t-1](+0,+1) +0.103407*u[t-1](+0,-1)",
+   "seconds": 53.1
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 801,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000098",
+   "seconds": 1.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 802,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000083",
+   "seconds": 0.8
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 803,
+   "noise_model": "gauss",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000098",
+   "seconds": 0.8
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 801,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.7416702104215113,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0007383577376111926,
+     "used": 0.0007383577376111926,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000265 +0.636375*u[t-1] +0.133779*u[t-1](+1,+0) +0.134437*u[t-1](-1,+0) +0.136770*u[t-1](+0,+1) +0.136535*u[t-1](+0,-1) -0.175151*u[t-1]^3",
+   "seconds": 32.7
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 802,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.6101237151235146,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0006109608115056953,
+     "used": 0.0006109608115056953,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000473 +0.645010*u[t-1] +0.135070*u[t-1](+1,+0) +0.135332*u[t-1](-1,+0) +0.132478*u[t-1](+0,+1) +0.132807*u[t-1](+0,-1) -0.180112*u[t-1]^3",
+   "seconds": 32.4
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 803,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.6310349309636257,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.000639425144320839,
+     "used": 0.000639425144320839,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000543 +0.657239*u[t-1] +0.130562*u[t-1](+1,+0) +0.129415*u[t-1](-1,+0) +0.129287*u[t-1](+0,+1) +0.129216*u[t-1](+0,-1) -0.176009*u[t-1]^3",
+   "seconds": 32.4
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 801,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9580866724108422,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0001236331059504079,
+     "used": 0.0001236331059504079,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000022 +0.201863*u[t-1](+1,+0) +0.200515*u[t-1](-1,+0) +0.201419*u[t-1](+0,+1) +0.200183*u[t-1](+0,-1) +0.196143*u[t-1] +0.125049*u[t-1](+0,-1)*u[t-1] -0.125411*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 69.1
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 802,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9553309764008552,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 11
+    },
+    {
+     "R_hat": 0.00010751061586941152,
+     "used": 0.00010751061586941152,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0001224549387986176,
+     "used": 0.0001224549387986176,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000158 +0.199119*u[t-1](+1,+0) +0.198914*u[t-1](-1,+0) +0.194294*u[t-1](+0,+1) +0.193024*u[t-1](+0,-1) +0.214111*u[t-1] +0.126503*u[t-1](+0,-1)*u[t-1] -0.125541*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 112.4
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 803,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9792524324650367,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00013159533904641977,
+     "used": 0.00013159533904641977,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000099 +0.201427*u[t-1](+1,+0) +0.198808*u[t-1](-1,+0) +0.199938*u[t-1](+0,+1) +0.199136*u[t-1](+0,-1) +0.200776*u[t-1] +0.124512*u[t-1](+0,-1)*u[t-1] -0.125012*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 67.3
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 801,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9741200289492341,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 9
+    },
+    {
+     "R_hat": 0.0002653718390832263,
+     "used": 0.0002653718390832263,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003211419035585506,
+     "used": 0.0003211419035585506,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000294 +0.490899*u[t-1] +0.099956*u[t-1](+17,-9) +0.103389*u[t-1](+1,+0) +0.102551*u[t-1](-1,+0) +0.102771*u[t-1](+0,+1) +0.100682*u[t-1](+0,-1)",
+   "seconds": 76.8
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 802,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9749414103168267,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 9
+    },
+    {
+     "R_hat": 0.00022305640571936572,
+     "used": 0.00022305640571936572,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003168272781942389,
+     "used": 0.0003168272781942389,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000020 +0.099642*u[t-1](+1,+0) +0.099596*u[t-1](-1,+0) +0.100492*u[t-1](+0,+1) +0.100342*u[t-1](+0,-1) +0.100324*u[t-1](+17,-9) +0.499313*u[t-1]",
+   "seconds": 76.6
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 803,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9581774624032863,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003580717578491135,
+     "used": 0.0003580717578491135,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000153 +0.484091*u[t-1] +0.099841*u[t-1](+17,-9) +0.107380*u[t-1](+1,+0) +0.106352*u[t-1](-1,+0) +0.101451*u[t-1](+0,+1) +0.101239*u[t-1](+0,-1)",
+   "seconds": 29.6
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 801,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000020",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 802,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000121",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 803,
+   "noise_model": "quantized",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000073",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 801,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9403201931351962,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.000936120502991266,
+     "used": 0.000936120502991266,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000155 +0.592080*u[t-1] +0.151110*u[t-1](+1,+0) +0.151048*u[t-1](-1,+0) +0.154642*u[t-1](+0,+1) +0.154212*u[t-1](+0,-1) -0.203217*u[t-1]^3",
+   "seconds": 39.3
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 802,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9729151860331229,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0009742500362646569,
+     "used": 0.0009742500362646569,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000475 +0.585599*u[t-1] +0.154822*u[t-1](+1,+0) +0.154426*u[t-1](-1,+0) +0.155629*u[t-1](+0,+1) +0.156122*u[t-1](+0,-1) -0.206303*u[t-1]^3",
+   "seconds": 31.1
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 803,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.970187454032139,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.000983087024779183,
+     "used": 0.000983087024779183,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000037 +0.608245*u[t-1] +0.147174*u[t-1](+1,+0) +0.146123*u[t-1](-1,+0) +0.147321*u[t-1](+0,+1) +0.146810*u[t-1](+0,-1) -0.195691*u[t-1]^3",
+   "seconds": 41.9
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 801,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9481305193767314,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0001223483473180523,
+     "used": 0.0001223483473180523,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000010 +0.201350*u[t-1](+1,+0) +0.200703*u[t-1](-1,+0) +0.205044*u[t-1](+0,+1) +0.204857*u[t-1](+0,-1) +0.188151*u[t-1] +0.126524*u[t-1](+0,-1)*u[t-1] -0.127615*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 75.0
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 802,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9811706745179261,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 11
+    },
+    {
+     "R_hat": 9.288362411849245e-05,
+     "used": 9.288362411849245e-05,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00012576708791726292,
+     "used": 0.00012576708791726292,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000005 +0.202031*u[t-1](+1,+0) +0.201230*u[t-1](-1,+0) +0.202555*u[t-1](+0,+1) +0.202359*u[t-1](+0,-1) +0.192351*u[t-1] -0.126453*u[t-1]*u[t-1](+0,+1) +0.127447*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 113.2
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 803,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9708472888403822,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0001304658266874502,
+     "used": 0.0001304658266874502,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000106 +0.201018*u[t-1](+1,+0) +0.199315*u[t-1](-1,+0) +0.202149*u[t-1](+0,+1) +0.200986*u[t-1](+0,-1) +0.196583*u[t-1] +0.125493*u[t-1](+0,-1)*u[t-1] -0.125356*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 77.4
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 801,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9703882456392533,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00028157710400106327,
+     "used": 0.00028157710400106327,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.00031991163217492247,
+     "used": 0.00031991163217492247,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000209 +0.486476*u[t-1] +0.099981*u[t-1](+17,-9) +0.102057*u[t-1](+1,+0) +0.101022*u[t-1](-1,+0) +0.105744*u[t-1](+0,+1) +0.105004*u[t-1](+0,-1)",
+   "seconds": 50.4
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 802,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9894954937683469,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0002760457412875585,
+     "used": 0.0002760457412875585,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003215569271739232,
+     "used": 0.0003215569271739232,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000095 +0.098586*u[t-1](+1,+0) +0.098539*u[t-1](-1,+0) +0.100275*u[t-1](+0,+1) +0.099545*u[t-1](+0,-1) +0.100268*u[t-1](+17,-9) +0.502593*u[t-1]",
+   "seconds": 69.3
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 803,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9967804434313178,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0003194976449678316,
+     "used": 0.0003194976449678316,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.00037249772570714835,
+     "used": 0.00037249772570714835,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000142 +0.491654*u[t-1] +0.099852*u[t-1](+17,-9) +0.100636*u[t-1](+1,+0) +0.098888*u[t-1](-1,+0) +0.105109*u[t-1](+0,+1) +0.103922*u[t-1](+0,-1)",
+   "seconds": 56.8
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 801,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000087",
+   "seconds": 1.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 802,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000073",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 803,
+   "noise_model": "poisson",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000103",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 801,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.6225259544870585,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.0010566162372747908,
+     "used": 0.0010566162372747908,
+     "n_terms": 12
+    },
+    {
+     "R_hat": 0.00039015048283320877,
+     "used": 0.00039015048283320877,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0008712994458380473,
+     "used": 0.0008712994458380473,
+     "n_terms": 12
+    }
+   ],
+   "status": "miss",
+   "n_found": 12,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'cube', 1, 0, 0)",
+    "('shift', 'id', 1, 0, 1)"
+   ],
+   "extra": [
+    "('shift', 'cube', 1, -1, 0)",
+    "('shift', 'cube', 1, 1, 0)",
+    "('shift', 'id', 2, -1, -1)",
+    "('shift', 'id', 2, -2, 0)",
+    "('shift', 'id', 2, 1, -1)",
+    "('shift', 'id', 2, 2, 0)",
+    "('shift', 'id', 3, -1, 1)",
+    "('shift', 'id', 3, 1, 1)"
+   ],
+   "law": "+0.000300 +1.428202*u[t-1] -0.176468*u[t-1](+1,+0)^3 -0.323306*u[t-1](-1,+0)^3 +0.160087*u[t-2](+1,-1) +0.272578*u[t-2](-1,-1) -0.373477*u[t-1](+1,+0) -0.660742*u[t-1](-1,+0) +0.135054*u[t-2](+2,+0) +0.126424*u[t-3](+1,+1) +0.241347*u[t-2](-2,+0) +0.236715*u[t-3](-1,+1) -0.063968*u[t-1](+0,-1)",
+   "seconds": 355.8
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 802,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 2.5801994073768038,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 12
+    },
+    {
+     "R_hat": 0.0015113529833043773,
+     "used": 0.0015113529833043773,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0025837394690654118,
+     "used": 0.0025837394690654118,
+     "n_terms": 8
+    }
+   ],
+   "status": "miss",
+   "n_found": 8,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'cube', 1, 1, 0)",
+    "('shift', 'id', 1, -1, -1)",
+    "('shift', 'id', 1, 1, -1)",
+    "('shift', 'id', 2, 0, 0)",
+    "('shift', 'id', 3, -1, 0)",
+    "('shift', 'id', 3, 0, 1)"
+   ],
+   "law": "+0.000245 +2.827604*u[t-1] -1.668703*u[t-2] -0.042013*u[t-3](-1,+0) -0.127485*u[t-3](+0,+1) -0.057453*u[t-1](-1,-1) +0.171384*u[t-1]^3 -0.020097*u[t-1](+1,+0)^3 -0.084556*u[t-1](+1,-1)",
+   "seconds": 219.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 803,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 3.7192672855470863,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 12
+    },
+    {
+     "R_hat": 0.0014303946421166582,
+     "used": 0.0014303946421166582,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.003768718503739701,
+     "used": 0.003768718503739701,
+     "n_terms": 7
+    }
+   ],
+   "status": "miss",
+   "n_found": 7,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('prod', 1, -1, -1, 0, 0)",
+    "('shift', 'cube', 2, 0, 0)",
+    "('shift', 'id', 2, 0, 0)",
+    "('shift', 'id', 3, -1, 0)"
+   ],
+   "law": "-0.002314 +2.229422*u[t-1] -1.247806*u[t-2] +0.595255*u[t-3](-1,+0) -0.605214*u[t-1](-1,+0) +0.978597*u[t-1]^3 -0.950270*u[t-2]^3 +0.002622*u[t-1](-1,-1)*u[t-1]",
+   "seconds": 214.4
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 801,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.6256639920124012,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.0002459665987160352,
+     "used": 0.0002459665987160352,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.00015825232255828624,
+     "used": 0.00015825232255828624,
+     "n_terms": 12
+    },
+    {
+     "R_hat": 0.0001292067381410572,
+     "used": 0.0001292067381410572,
+     "n_terms": 8
+    }
+   ],
+   "status": "miss",
+   "n_found": 8,
+   "n_truth": 7,
+   "missing": [
+    "('shift', 'id', 1, 0, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, -1, 0)",
+    "('shift', 'id', 2, 1, 0)"
+   ],
+   "law": "-0.000209 +0.103590*u[t-1](+1,+0) +0.123699*u[t-1](-1,+0) +0.262193*u[t-1](+0,+1) +0.259601*u[t-1](+0,-1) +0.135161*u[t-2](+1,+0) +0.115720*u[t-2](-1,+0) +0.162264*u[t-1](+0,-1)*u[t-1] -0.163171*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 175.1
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 802,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.00024068221469026582,
+     "used": 0.00024068221469026582,
+     "n_terms": 12
+    },
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.00024068221469026582,
+     "used": 0.00024068221469026582,
+     "n_terms": 12
+    }
+   ],
+   "status": "miss",
+   "n_found": 12,
+   "n_truth": 7,
+   "missing": [
+    "('prod', 1, 0, -1, 0, 0)",
+    "('prod', 1, 0, 0, 0, 1)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 0)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 1, -1, -1)",
+    "('shift', 'id', 1, -1, 1)",
+    "('shift', 'id', 1, -2, 2)",
+    "('shift', 'id', 1, -3, 4)",
+    "('shift', 'id', 1, -4, 0)",
+    "('shift', 'id', 1, 0, -3)",
+    "('shift', 'id', 1, 1, 1)",
+    "('shift', 'id', 1, 3, -4)",
+    "('shift', 'id', 1, 3, 0)",
+    "('shift', 'id', 1, 4, -1)"
+   ],
+   "law": "+0.000371 +3.638037*u[t-1](-1,+0) +5.115153*u[t-1](+0,+1) -2.196761*u[t-1](+1,+1) -6.100947*u[t-1](-1,+1) -1.266138*u[t-1](-1,-1) +1.463756*u[t-1](-2,+2) -0.208091*u[t-1](-3,+4) +0.501832*u[t-1](+3,+0) +0.181605*u[t-1](+0,-3) -0.165532*u[t-1](+4,-1) +0.023573*u[t-1](-4,+0) -0.016085*u[t-1](+3,-4)",
+   "seconds": 329.4
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 803,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.0002678263028196881,
+     "used": 0.0002678263028196881,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.0002678263028196881,
+     "used": 0.0002678263028196881,
+     "n_terms": 10
+    }
+   ],
+   "status": "miss",
+   "n_found": 10,
+   "n_truth": 7,
+   "missing": [
+    "('prod', 1, 0, -1, 0, 0)",
+    "('prod', 1, 0, 0, 0, 1)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 0)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 1, -1, -1)",
+    "('shift', 'id', 1, -1, 1)",
+    "('shift', 'id', 1, -2, 2)",
+    "('shift', 'id', 1, -3, 2)",
+    "('shift', 'id', 1, -3, 4)",
+    "('shift', 'id', 1, 0, -3)",
+    "('shift', 'id', 1, 1, 1)",
+    "('shift', 'id', 1, 3, 0)"
+   ],
+   "law": "+0.000455 +4.436603*u[t-1](-1,+0) +4.081959*u[t-1](+0,+1) -1.384040*u[t-1](+1,+1) -6.405508*u[t-1](-1,+1) -1.572253*u[t-1](-1,-1) +1.997045*u[t-1](-2,+2) -0.216622*u[t-1](-3,+4) +0.152665*u[t-1](+3,+0) +0.188730*u[t-1](+0,-3) -0.302298*u[t-1](-3,+2)",
+   "seconds": 268.5
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 801,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.181053317536269,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0002973398030878768,
+     "used": 0.0002973398030878768,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0003333771447097355,
+     "used": 0.0003333771447097355,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0003564331717973942,
+     "used": 0.0003564331717973942,
+     "n_terms": 6
+    }
+   ],
+   "status": "miss",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, -1, -1)",
+    "('shift', 'id', 2, -1, 1)",
+    "('shift', 'id', 2, 1, -1)",
+    "('shift', 'id', 2, 1, 1)"
+   ],
+   "law": "-0.000348 +0.672799*u[t-1] +0.123207*u[t-1](+17,-9) +0.051656*u[t-2](+1,+1) +0.050133*u[t-2](+1,-1) +0.051516*u[t-2](-1,+1) +0.050193*u[t-2](-1,-1)",
+   "seconds": 106.5
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 802,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.229226965484959,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 10
+    },
+    {
+     "R_hat": 0.00039946260322556494,
+     "used": 0.00039946260322556494,
+     "n_terms": 6
+    }
+   ],
+   "status": "miss",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 2, -1, -1)",
+    "('shift', 'id', 2, -1, 1)",
+    "('shift', 'id', 2, 1, -1)",
+    "('shift', 'id', 2, 1, 1)"
+   ],
+   "law": "+0.000042 +0.660948*u[t-1] +0.123336*u[t-1](+17,-9) +0.054652*u[t-2](+1,+1) +0.052331*u[t-2](+1,-1) +0.052306*u[t-2](-1,+1) +0.055482*u[t-2](-1,-1)",
+   "seconds": 40.3
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 803,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.0828938182966084,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.000536724239609565,
+     "used": 0.000536724239609565,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.00040467836940022265,
+     "used": 0.00040467836940022265,
+     "n_terms": 8
+    }
+   ],
+   "status": "miss",
+   "n_found": 8,
+   "n_truth": 6,
+   "missing": [
+    "('shift', 'id', 1, -1, 0)",
+    "('shift', 'id', 1, 0, -1)",
+    "('shift', 'id', 1, 0, 1)",
+    "('shift', 'id', 1, 1, 0)"
+   ],
+   "extra": [
+    "('shift', 'id', 1, 1, 1)",
+    "('shift', 'id', 2, -1, -1)",
+    "('shift', 'id', 2, -1, 1)",
+    "('shift', 'id', 2, 1, -1)",
+    "('shift', 'id', 2, 1, 1)",
+    "('shift', 'id', 2, 17, -8)"
+   ],
+   "law": "-0.000083 +0.628534*u[t-1] +0.122125*u[t-1](+17,-9) +0.159269*u[t-2](+1,+1) +0.063249*u[t-2](+1,-1) +0.058322*u[t-2](-1,+1) +0.061167*u[t-2](-1,-1) -0.108906*u[t-1](+1,+1) +0.014503*u[t-2](+17,-8)",
+   "seconds": 138.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 801,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000236",
+   "seconds": 1.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 802,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000362",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 803,
+   "noise_model": "blurred",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000245",
+   "seconds": 0.9
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 801,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.0078406404692637,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.001003339388198674,
+     "used": 0.001003339388198674,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000228 +0.611740*u[t-1] +0.145187*u[t-1](+1,+0) +0.145371*u[t-1](-1,+0) +0.145666*u[t-1](+0,+1) +0.145519*u[t-1](+0,-1) -0.193105*u[t-1]^3",
+   "seconds": 34.8
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 802,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9607638066345601,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0009620819850412151,
+     "used": 0.0009620819850412151,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000299 +0.607893*u[t-1] +0.147915*u[t-1](+1,+0) +0.147429*u[t-1](-1,+0) +0.146991*u[t-1](+0,+1) +0.147867*u[t-1](+0,-1) -0.197955*u[t-1]^3",
+   "seconds": 44.5
+  },
+  {
+   "part": "C",
+   "world": "allen_cahn",
+   "seed": 803,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9828770202339469,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0009311506753605835,
+     "used": 0.0009311506753605835,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0009959453109085565,
+     "used": 0.0009959453109085565,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000005 +0.596649*u[t-1] +0.151131*u[t-1](+1,+0) +0.150486*u[t-1](-1,+0) +0.150754*u[t-1](+0,+1) +0.150573*u[t-1](+0,-1) -0.199403*u[t-1]^3",
+   "seconds": 73.9
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 801,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.0134955404793087,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 8
+    },
+    {
+     "R_hat": 0.0001242133156323634,
+     "used": 0.0001242133156323634,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00013078315891927264,
+     "used": 0.00013078315891927264,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000065 +0.200702*u[t-1](+1,+0) +0.199989*u[t-1](-1,+0) +0.196958*u[t-1](+0,+1) +0.196768*u[t-1](+0,-1) +0.205536*u[t-1] +0.123152*u[t-1](+0,-1)*u[t-1] -0.124352*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 120.4
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 802,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9942405811757008,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.00012744239695613774,
+     "used": 0.00012744239695613774,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000021 +0.195872*u[t-1](+1,+0) +0.195750*u[t-1](-1,+0) +0.196934*u[t-1](+0,+1) +0.196504*u[t-1](+0,-1) +0.214462*u[t-1] -0.125026*u[t-1]*u[t-1](+0,+1) +0.126033*u[t-1](+0,-1)*u[t-1]",
+   "seconds": 70.7
+  },
+  {
+   "part": "C",
+   "world": "burgers",
+   "seed": 803,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9860233802179733,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 7
+    },
+    {
+     "R_hat": 0.0001325052424948803,
+     "used": 0.0001325052424948803,
+     "n_terms": 7
+    }
+   ],
+   "status": "exact",
+   "n_found": 7,
+   "n_truth": 7,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000001 +0.203328*u[t-1](+1,+0) +0.201524*u[t-1](-1,+0) +0.203169*u[t-1](+0,+1) +0.201784*u[t-1](+0,-1) +0.190237*u[t-1] +0.124644*u[t-1](+0,-1)*u[t-1] -0.124692*u[t-1]*u[t-1](+0,+1)",
+   "seconds": 68.8
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 801,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.0019290068046756,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.00033030979644557744,
+     "used": 0.00033030979644557744,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000322 +0.496955*u[t-1] +0.099830*u[t-1](+17,-9) +0.102684*u[t-1](+1,+0) +0.102478*u[t-1](-1,+0) +0.099916*u[t-1](+0,+1) +0.098595*u[t-1](+0,-1)",
+   "seconds": 28.5
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 802,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 1.021702679911004,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003320233152213416,
+     "used": 0.0003320233152213416,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000085 +0.092751*u[t-1](+1,+0) +0.092693*u[t-1](-1,+0) +0.098538*u[t-1](+0,+1) +0.097929*u[t-1](+0,-1) +0.099956*u[t-1](+17,-9) +0.517329*u[t-1]",
+   "seconds": 37.1
+  },
+  {
+   "part": "C",
+   "world": "wormhole",
+   "seed": 803,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.9675367740225486,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 6
+    },
+    {
+     "R_hat": 0.0003615693408076619,
+     "used": 0.0003615693408076619,
+     "n_terms": 6
+    }
+   ],
+   "status": "exact",
+   "n_found": 6,
+   "n_truth": 6,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000053 +0.485128*u[t-1] +0.100003*u[t-1](+17,-9) +0.100759*u[t-1](+1,+0) +0.099258*u[t-1](-1,+0) +0.107596*u[t-1](+0,+1) +0.107235*u[t-1](+0,-1)",
+   "seconds": 30.7
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 801,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "-0.000090",
+   "seconds": 1.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 802,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000071",
+   "seconds": 1.0
+  },
+  {
+   "part": "C",
+   "world": "null",
+   "seed": 803,
+   "noise_model": "heavy",
+   "sensor_ratio": 0.04,
+   "R_hat_over_R": 0.0,
+   "rounds": [
+    {
+     "R_hat": 0.0,
+     "used": 0.0,
+     "n_terms": 0
+    }
+   ],
+   "status": "exact",
+   "n_found": 0,
+   "n_truth": 0,
+   "missing": [],
+   "extra": [],
+   "law": "+0.000150",
+   "seconds": 0.9
+  }
+ ]
+}
