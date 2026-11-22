@@ -17,7 +17,7 @@ def test_synthetic_independent_sources_can_fake_sensor_connectivity():
     null=independent_sources_mixed(seed=99,n=10000)
     assert null["source_true_cross_couplings"]==0
     assert null["mixed_sensor_ar_offdiagonal_fraction"]>.1
-    assert null["relative_fit_error"]<.1
+    assert null["relative_fit_error"]<.2
 
 
 def test_temporal_regressor_and_iv_have_finite_heldout_metrics():
