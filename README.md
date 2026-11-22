@@ -32,6 +32,18 @@ This separate, experimental branch now proposes **unknown linear shift terms** u
 
 **Frozen excitation follow-up (new seeds 301–303):** with 1% relative sensor noise, the exact recovery rate for the combined wormhole + diagonal worlds was **0/6** at 0% process noise, **1/6** at 0.5%, and **6/6** at each of 1%, 2%, and 4%. The result supports an excitation-dependent identifiability explanation for these two synthetic systems, but changing the process noise also changes the latent amplitude distribution and absolute sensor noise. [Workflow and raw results](https://github.com/anttiluode/Luotain2/actions/runs/45020756202) · [Compact summary](results/iv_excitation_summary.json). No general theory or real-world validation is claimed.
 
+## November 22 — First real EEG signal instrument
+
+[**EEG Result 001**](EEG_RESULT_001.md) · [public EEG pilot](scripts/eeg_physionet_pilot.py) · [reproducible GitHub run](https://github.com/anttiluode/Luotain2/actions/runs/45022967372).
+
+We analyzed two real public PhysioNet EEG baselines (S001, eyes open/closed; 64 electrodes recorded at 160 Hz, eight selected for this pilot). Posterior alpha-band power (8–12 Hz relative to 4–30 Hz) increased from **22.3% eyes open** to **70.2% eyes closed**. Eight-electrode held-out AR(1) prediction favored **ridge OLS over earlier-lag IV** in both conditions. A rigorous synthetic mixing null showed **72.1% apparent off-diagonal sensor-model weight with zero true source connections**. No neural wiring or medical diagnosis was inferred; EEG is a mixed sensor signal, not a periodic 2-D field.
+
+## November 22 — Fixed absolute sensor variance and matched IV/OLS control
+
+[**Frozen paired-ablation workflow**](.github/workflows/fixed_r_ablation.yml) · [matched OLS/IV branch](luotain2/blind_iv.py) · [tests](tests/test_fixed_r_ols_iv.py).
+
+The next synthetic control evaluates both methods on identical simulation seeds and candidate-selection rules, across fixed **sensor-noise standard deviation 0.01** and matched **latent field standard deviation 0.25**. This is **4% relative observation noise**, not the original 1% sweep. Process excitation varies while both total power and absolute sensor variance remain fixed. OLS and IV use the same regression rows and noise-corrected validation risk; true terms remain hidden until evaluation. Results must distinguish sensor excitation from simply increasing the signal-to-noise ratio, and separate oracle-support estimation from blind structural recovery.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.
