@@ -34,3 +34,42 @@ This is the corrected-score idea (Stefanski; Nakamura; the polynomial correction
 No claim is made for correlated sensor noise, unknown R, heavy-tailed noise, other nonlinear families, or real data.
 
 ---
+
+## Results (run 22 November 2026, after freezing; 240 blind selections, ~1.1 CPU-hours)
+
+Receipt: [`results/poly_gate.json`](results/poly_gate.json), every case with found law, missing/extra terms, corrected test risk, clean-test NMSE and coefficient error.
+
+Exact support recovered (3 seeds per cell):
+
+| world | sensor noise | IV + exact | OLS + exact | IV + linear recipe | OLS + linear recipe |
+|---|---|---|---|---|---|
+| allen_cahn | 1% | 3/3 | 3/3 | 3/3 | 3/3 |
+| | 2% | 3/3 | 3/3 | 3/3 | 2/3 |
+| | 4% | **3/3** | **3/3** | 0/3 | 0/3 |
+| | 8% | 2/3 | 0/3 | 0/3 | 0/3 |
+| burgers | 1% | 3/3 | 3/3 | 3/3 | 3/3 |
+| | 2% | 3/3 | 3/3 | 3/3 | 3/3 |
+| | 4% | **3/3** | **3/3** | 1/3 | 3/3 |
+| | 8% | 2/3 | **3/3** | 0/3 | 0/3 |
+| heat | all | 12/12 | 12/12 | 12/12 | 12/12 |
+| wormhole | 1–4% | 9/9 | 9/9 | 9/9 | 9/9 |
+| | 8% | 2/3 | 1/3 | 2/3 | 1/3 |
+| null | all | 12/12 clean | 12/12 clean | 12/12 clean | 12/12 clean |
+| **nonlinear total** | | **22/24** | **21/24** | 13/24 | 14/24 |
+| **linear total** | | 23/24 | 22/24 | 23/24 | 22/24 |
+
+**What held:**
+
+1. **The exact correction is what makes nonlinear laws findable under sensor noise.** On Allen–Cahn and Burgers it recovers 22/24 (IV) and 21/24 (OLS) exact laws, against 13/24 and 14/24 for the linear recipe. The whole difference sits at 4% and 8%: the linear recipe recovers 0 of 18 cases at 4% Allen–Cahn and at 8% in both worlds.
+2. **The linear recipe fails the way predicted.** Its 107 wrong extra terms are mostly delayed copies: 62 at lag 2 and 26 at lag 3. They average away sensor noise and look better under a score that does not correct the nonlinear terms' noise.
+3. **On linear worlds the two corrections tie** (23/24 vs 23/24 for IV), as expected: for linear laws they are algebraically the same score. The full grammar did not admit nonlinear junk into heat or wormhole. **Null: 0 false positives in 48 selections.**
+4. **Coefficients, when the support is exact:** the median relative coefficient error for IV + exact grows from 0.3% (Allen–Cahn) and 1.0% (Burgers) at 1% noise to 4.4% and 8.5% at 8%.
+
+**What did not go as predicted:**
+
+- **OLS + exact matched IV.** It was even better on Burgers at 8% (3/3 vs 2/3), with lower Burgers coefficient error (2.1% vs 8.5% at 8%). With 2% process noise these worlds are well excited, and the selection score, not the estimator, was the bottleneck. This differs from Sol's fixed-R linear gate, where IV won at marginal excitation. Both can be true; this gate did not test low excitation.
+- **OLS + exact failed all of Allen–Cahn at 8%,** in the same way each time: the search stopped after one term (u at the same pixel), never taking the stencil or u³. Errors-in-variables attenuation shrinks the OLS coefficients, so no single addition clears δ. IV recovered 2/3 there.
+- **The predicted Burgers alias did not occur on these seeds.** Development seed 11 at 8% replaced the products with u(0,±1)². On seeds 601–603, the only exact-arm Burgers failure was one extra delayed product.
+- The remaining exact-arm failures at 8% are all **one extra lag-2 term**. Allen–Cahn IV, Burgers IV and all three wormhole failures each had exactly one extra delayed term and nothing missing. The leftover denoiser pull at 8% is therefore about one term.
+
+**Limits.** Gaussian i.i.d. sensor noise with known R; two nonlinear families from the same simulator; one process-noise level (2%); three seeds per cell. Not tested: unknown or misestimated R, correlated or heavy-tailed noise, low excitation, other nonlinearities (e.g. rational or non-polynomial), or real data. The Hermite correction is exact only for polynomial terms. "Exact support" means equality with the generating simulator's term list.

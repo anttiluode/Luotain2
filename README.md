@@ -44,6 +44,12 @@ We analyzed two real public PhysioNet EEG baselines (S001, eyes open/closed; 64 
 
 **Verified completed ablation:** 30 unseen synthetic trials per estimator on identical measurements, with absolute **sensor-noise SD 0.01** and globally matched **latent field SD 0.25** (**4% relative sensor noise**, intentionally tougher than the original 1%). Exact law recovery for increasing process-noise settings (0%, 0.5%, 1%, 2%, 4%) was **IV: 0/6, 3/6, 6/6, 6/6, 6/6** versus **matched OLS: 0/6, 0/6, 0/6, 6/6, 6/6**. Both use the same regression time rows, noise-corrected validation rule and candidate proposal algorithm; their exact proposed supports may diverge after the first fit. **IV 21/30 versus OLS 12/30**, under two synthetic linear law families, is evidence of excitation and estimator-specific support recovery, not a new general theorem. [Verified workflow with two JSON artifacts](https://github.com/anttiluode/Luotain2/actions/runs/45022617505) · [Full method and limits](FIXED_R_GATE.md) · [Result summary](results/fixed_r_ols_iv_summary.json).
 
+## November 22 — Gate IV-004: nonlinear laws, blind, under sensor noise
+
+[**Frozen method and results**](POLY_GATE.md) · [selector](luotain2/blind_poly.py) · [driver](scripts/run_poly_gate.py) · [tests](tests/test_blind_poly.py) · [receipt](results/poly_gate.json).
+
+The blind search now covers the full grammar (u, u², u³, nearby products). Validation uses an **exact Hermite corrected score**: an unbiased estimate of the latent one-step error of any polynomial law, computed from noisy frames and a known sensor variance. For linear laws it reduces to the IV-002 formula. On 3 new seeds per cell, with sensor noise 1–8% and 2% process noise, exact support recovery on Allen–Cahn and Burgers was **22/24 (IV) and 21/24 (OLS) with the exact score**, against **13/24 and 14/24** when the linear recipe is applied to nonlinear terms. That recipe fills the law with lag-2 and lag-3 denoising copies. Linear controls tie (23/24 vs 23/24), and null worlds gave 0 false positives in 48 selections. OLS matched IV here; with OLS, Allen–Cahn at 8% stalls after one term. Synthetic, known Gaussian R, one excitation level: see the limits in the report.
+
 ## The loop
 
 1. Fit the current law on the training split. What it cannot predict is the **residue**.
