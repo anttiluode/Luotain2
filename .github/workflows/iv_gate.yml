@@ -1,0 +1,34 @@
+name: Experimental IV gate (known support)
+
+on:
+  push:
+    paths:
+      - 'luotain2/iv.py'
+      - 'scripts/run_iv_gate.py'
+      - 'tests/test_iv.py'
+      - '.github/workflows/iv_gate.yml'
+  workflow_dispatch:
+
+jobs:
+  oracle-support-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scipy pytest
+      - name: Check 1% observation-noise coefficient recovery on original worlds
+        run: >
+          python scripts/run_iv_gate.py
+          --worlds heat diagonal wave wormhole allen_cahn burgers drift
+          --seeds 101 102 103
+          --window 1 --gap 0 --n 64 --T 40
+          --out results/iv_gate.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iv-gate-oracle-support
+          path: results/iv_gate.json
+          if-no-files-found: warn
