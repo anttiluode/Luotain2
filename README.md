@@ -58,6 +58,20 @@ The sensor variance can now be found **blind** from the law's own **noise echo**
 
 The miscalibration sweep is asymmetric. **Underestimating R adds at most one delayed term; overestimating it by 10% collapses the nonlinear searches at 8% noise.** At weak excitation, IV did **worse** than OLS on Burgers (0/3 vs 3/3 with no process noise), and Allen–Cahn failed for both. Both are dark directions in the passive data, not estimator bugs.
 
+## November 22 — Gate IV-007: blind noise kernel for spatially correlated sensor noise
+
+[**Frozen method and results**](KERNEL_GATE.md) · [noise kernel](luotain2/noise_kernel.py) · [driver](scripts/run_kernel_gate.py) · [tests](tests/test_noise_kernel.py).
+
+The single sensor variance is replaced by a **noise kernel** C(Δ), the covariance of the sensor error between pixels Δ apart in the same frame. Scores are Wick-corrected (the multi-pixel version of the Hermite correction). The kernel is read blind from the noise echo. On new seeds:
+
+| noise | before (IV-006) | now |
+|---|---|---|
+| 3×3 blurred | **0/9** exact | **8/9** exact |
+| camera-like (blur × signal-dependent level) | – | **7/9** exact |
+| i.i.d. Gaussian | 9/9 | 8/9 |
+
+The blind kernel matched the truth within about 0.08 in all 27 non-null cases (C(0)/R 0.96–1.08, neighbour 0.64–0.71 vs 0.67). Null worlds gave 0 false laws in 9. Every miss was one term off, and both lag swaps came from runs where the start-kernel probe was invalid. Getting here needed a correction to the echo formula: for multi-lag laws the law's own terms meet across time, and without that term the kernel came out 18% low.
+
 ## November 22 — Gate IV-006: toward real sensors
 
 [**Frozen method and results**](SENSOR_GATE.md) · [driver](scripts/run_sensor_gate.py).

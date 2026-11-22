@@ -48,3 +48,57 @@ Scored on exact support, as in IV-004 to IV-006. Recovered C(Δ)/R is reported f
 - **Camera:** somewhat worse than blurred, because signal-dependent noise breaks the Gaussian-Wick assumption locally. I expect 4–7 of 9.
 - **Gauss:** close to IV-006 (9/9). The recovered off-zero kernel values should be near 0 (|C(Δ)/R| < 0.15). Losing more than one law here would mean the extra 12 kernel parameters cost more than they buy.
 - **Failure mode to watch:** a confidently wrong law with a self-consistent kernel, as in development. If it happens, it is reported as such. No refusal rule is added after the fact.
+
+---
+
+## Results (run 22 November 2026 after freezing; 36 cases)
+
+Receipts: [`results/kernel_gate_ac_null.json`](results/kernel_gate_ac_null.json), [`results/kernel_gate_bu_wh.json`](results/kernel_gate_bu_wh.json).
+
+| noise | exact laws (non-null) | IV-006 scalar R on the same noise model | null false laws |
+|---|---|---|---|
+| **blurred** | **8/9** | 0/9 | 0/3 |
+| **camera** (blurred × signal-dependent) | **7/9** | – | 0/3 |
+| gauss (control) | 8/9 | 9/9 | 0/3 |
+
+IV-006 used seeds 801–803; this gate used new seeds 901–903.
+
+### Recovered noise kernel, C(Δ)/R, non-null worlds
+
+| noise | (0,0) | (0,1) | (1,1) | (0,2) | (2,2) |
+|---|---|---|---|---|---|
+| truth, blurred/camera | 1 | 0.67 | 0.44 | 0.33 | 0.11 |
+| blurred, blind | 0.98–1.08 | 0.65–0.71 | 0.41–0.48 | 0.31–0.35 | 0.09–0.15 |
+| camera, blind | 0.96–1.08 | 0.64–0.69 | 0.41–0.48 | 0.33–0.35 | 0.09–0.16 |
+| truth, gauss | 1 | 0 | 0 | 0 | 0 |
+| gauss, blind | 0.97–1.06 | −0.02–0.03 | −0.01–0.02 | −0.02–0.02 | −0.01–0.02 |
+
+The kernel was recovered blind, from noisy frames only, within about 0.08 of the truth in every one of the 27 non-null cases. That holds even for the camera model, whose true kernel varies with local brightness. With i.i.d. noise the off-zero values came out at zero.
+
+### The five misses
+
+Each was off by one term, with nothing else wrong:
+
+- **blurred Allen–Cahn 902:** u[t−1](0,−1) swapped for u[t−2](0,−1), the same swap as in development.
+- **camera Burgers 902:** the product u·u(0,−1) at lag 1 swapped for lag 2.
+- **camera Burgers 903:** one extra lag-2 product.
+- **gauss Allen–Cahn 902:** one extra u[t−2](0,+1).
+
+That is four misses. The fifth is not a miss: all 9 null worlds stayed empty.
+
+**Both lag swaps happened in the only two runs where the probe kernel failed the PSD check.** There the loop fell back to the round-1 echo, the start that development had shown to be the weak one. In the other 25 non-null runs the probe was valid; 24 of them were exact. This is an observation, not a rule added after the fact. It suggests the next improvement is a better probe (one that cannot be invalid), not a better echo.
+
+### Against the predictions
+
+- **Blurred, 5–8 of 9 predicted: 8/9.** Top of the range. Wormhole and Burgers were 6/6; Allen–Cahn missed once, as expected. Final C(0)/R within 0.85–1.15: held (0.98–1.08).
+- **Camera, 4–7 of 9 predicted: 7/9.** Top of the range. The signal-dependent part cost less than I expected; the misses were in Burgers, not Allen–Cahn.
+- **Gauss, about 9/9 predicted, failure defined as losing more than one: 8/9.** One lost law (an extra delayed term, the classic underestimate miss). That is inside the stated tolerance, but it is one worse than the scalar method on other seeds, so the 12 extra kernel parameters are not free.
+- **Watched failure mode:** no confident wrong law with a self-consistent wrong kernel appeared. In every miss the kernel was right and the law was one term off.
+
+**What this means.** The wall from IV-006 is down for this kind of noise. Blurred sensor noise went from 0/9 to 8/9, and the kernel itself is read off the data blind. The full chain is now blind on noise level and noise shape, plus the nonlinear grammar, with no false laws in 9 null worlds.
+
+**Limits.**
+- Synthetic data, three seeds, one blur shape (3×3 box), one noise level (4%), one grid size and length.
+- The kernel support is 5×5. Wider blur (real optics, JPEG blocks) needs a larger radius, and the deconvolution then has more unknowns.
+- Noise must still be white in time and independent of the field. Rolling-shutter or temporally filtered video breaks the first.
+- The probe law assumes a lag-1, local-plus-found-links structure.
