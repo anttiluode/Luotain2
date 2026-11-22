@@ -79,6 +79,21 @@ def test_original_discrete_world_is_supported_without_promising_recovery():
     assert r.coef is None or np.all(np.isfinite(r.coef))
 
 
+def test_product_term_lag_uses_second_tuple_slot():
+    rng = np.random.default_rng(444)
+    frames = rng.normal(size=(14, 12, 12))
+    terms = [
+        ("shift", "id", 1, 0, 0),
+        ("prod", 1, 0, 0, 0, 1),
+        ("shift", "cube", 2, 0, 0),
+    ]
+    A, Z, b, meta = moment_matrices(frames, terms, sensor_var=0.002)
+    assert A.shape[1] == 4 and Z.shape == A.shape
+    assert meta["lag_shift"] == 2
+    assert meta["earliest_target_time"] == 4
+    r = estimate(frames, terms, sensor_var=0.002)
+    assert np.all(np.isfinite(r.ols_coef))
+
 def test_invalid_time_geometry_refuses():
     with pytest.raises(ValueError):
         moment_matrices(np.ones((2, 4, 4)), [TERM], window=2, gap=5)
