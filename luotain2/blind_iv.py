@@ -48,7 +48,8 @@ class BlindIVLaw:
 class BlindIVDiscoverer:
     def __init__(self, max_lag=3, margin=32, k_props=20,
                  max_terms=18, delta=0.003, abs_floor=1e-6,
-                 pixel_stride=2, max_condition=1e5, seed=0, complexity_penalty=2e-6):
+                 pixel_stride=2, max_condition=1e5, seed=0, complexity_penalty=2e-6,
+                 estimator="iv"):
         self.max_lag = max_lag
         self.max_terms = max_terms
         self.delta = delta
@@ -56,6 +57,9 @@ class BlindIVDiscoverer:
         self.pixel_stride = pixel_stride
         self.max_condition = max_condition
         self.complexity_penalty = complexity_penalty
+        if estimator not in ("iv", "ols"):
+            raise ValueError("estimator must be iv or ols")
+        self.estimator = estimator
         self.original = Discoverer(
             mode="dynamics", max_lag=max_lag, margin=margin,
             families=("id",), k_props=k_props, k_products=0,
@@ -70,20 +74,26 @@ class BlindIVDiscoverer:
         z = estimate(train.frames, terms, window=1, gap=0,
                      pixel_stride=self.pixel_stride,
                      max_condition=self.max_condition)
+        if self.estimator == "ols":
+            return z.ols_coef if np.all(np.isfinite(z.ols_coef)) else None
         if not z.identified or not np.all(np.isfinite(z.coef)):
             self.refusals += 1
             return None
         return z.coef
 
     @staticmethod
-    def corrected_risk(stream, terms, coef, sensor_ratio=0.01):
+    def corrected_risk(stream, terms, coef, sensor_ratio=0.01,
+                       sensor_variance=None):
         if coef is None:
             return float("inf")
         if any(t[0] != "shift" or t[1] != "id" for t in terms):
             raise ValueError("Gate IV-002 only validates linear shift terms")
         # No oracle coefficients/clean frames. Noise ratio was supplied by
         # benchmark experiment, and estimated from observable variance.
-        sensor_var = (sensor_ratio * float(stream.frames.std())) ** 2
+        sensor_var = ((sensor_ratio * float(stream.frames.std())) ** 2
+                      if sensor_variance is None else float(sensor_variance))
+        if not np.isfinite(sensor_var) or sensor_var < 0:
+            raise ValueError("sensor_variance must be finite and nonnegative")
         pred = stream.design(terms) @ coef
         raw = float(np.mean((stream.y - pred) ** 2))
         # Unique shift terms read distinct observation noise samples, so
@@ -127,10 +137,15 @@ class BlindIVDiscoverer:
             append((ds[1],ds[2]))
         return groups
 
-    def run(self, train, val, *, sensor_ratio=0.01, verbose=False):
+    def run(self, train, val, *, sensor_ratio=0.01, sensor_variance=None,
+            verbose=False):
+        # Both IV and OLS use exactly the same validation correction.
+        def risk(stream, terms, coef):
+            return self.corrected_risk(stream, terms, coef, sensor_ratio,
+                                       sensor_variance=sensor_variance)
         terms=[]
         coef=self.fit(train,terms)
-        score=self.corrected_risk(val,terms,coef,sensor_ratio)
+        score=risk(val,terms,coef)
         steps=[]
         for iteration in range(self.max_terms):
             r=train.y-train.design(terms)@coef
@@ -149,7 +164,7 @@ class BlindIVDiscoverer:
             for group in groups:
                 trial_terms=terms+list(group)
                 c=self.fit(train,trial_terms)
-                raw=self.corrected_risk(val,trial_terms,c,sensor_ratio)
+                raw=risk(val,trial_terms,c)
                 if np.isfinite(raw):
                     obj=raw+self.complexity_penalty*len(trial_terms)
                     proposals.append((obj,raw,group,c,None))
@@ -164,7 +179,7 @@ class BlindIVDiscoverer:
                             continue
                         trial_terms=rest+list(group)
                         c=self.fit(train,trial_terms)
-                        raw=self.corrected_risk(val,trial_terms,c,sensor_ratio)
+                        raw=risk(val,trial_terms,c)
                         if np.isfinite(raw):
                             obj=raw+self.complexity_penalty*len(trial_terms)
                             proposals.append((obj,raw,group,c,old))
@@ -183,7 +198,7 @@ class BlindIVDiscoverer:
                 for t in terms:
                     reduced=[v for v in terms if v!=t]
                     c=self.fit(train,reduced)
-                    raw=self.corrected_risk(val,reduced,c,sensor_ratio)
+                    raw=risk(val,reduced,c)
                     old_obj=score+self.complexity_penalty*len(terms)
                     new_obj=raw+self.complexity_penalty*len(reduced)
                     if np.isfinite(raw) and new_obj-old_obj<=max(
@@ -203,7 +218,7 @@ class BlindIVDiscoverer:
                       f"added={steps[-1]['added']} "
                       f"exchange={steps[-1]['exchange_removed']} "
                       f"dropped={dropped}",flush=True)
-        trrisk=self.corrected_risk(train,terms,coef,sensor_ratio)
+        trrisk=risk(train,terms,coef)
         return BlindIVLaw(terms,coef,score,trrisk,steps,
                           self.fit_calls,self.refusals,
                           "found" if terms else "empty")
